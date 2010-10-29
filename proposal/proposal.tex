@@ -35,14 +35,19 @@ algorithm that not only can compute elementary symbolic integrals, but
 also that can prove that no such one exists when that is the case.
 
 \section{Outline}
-Over the summer of 2010, I worked on implementing the transcendental\footnote{Transcendental means that the functions handled by this sub-part of the algorithm cannot contain algebraic functions.  More or less, this means that the function cannot contain radical expressions like $\sqrt{x + 1}$ or $\sqrt[3]{\ln{x}}$.  However, it can contain exponentials ($e^x$), logarithms ($\ln{x}$), or trigonometric functions ($\sin{x}$).}
-part of the Risch Integration Algorithm in Sym\-Py, an open source
-computer algebra system written in Python.  The algorithm is very
-complex and difficult to implement, and requires some understanding of
-advanced mathematics to full understand.  This report will contain an
-overview of my work, and will also look at some of the other
-implementations of the algorithm in other open source computer algebra
-systems.  
+Over the summer of 2010, I worked on implementing the
+transcendental\footnote{Transcendental means that the functions handled
+by this sub-part of the algorithm cannot contain algebraic functions. 
+More or less, this means that the function cannot contain radical
+expressions like $\sqrt{x + 1}$ or $\sqrt[3]{\ln{x}}$.  However, it can
+contain exponentials ($e^x$), logarithms ($\ln{x}$), or trigonometric
+functions ($\sin{x}$).} part of the Risch Integration Algorithm in
+Sym\-Py, an open source computer algebra system written in Python.  The
+algorithm is very complex and difficult to implement, and requires some
+understanding of advanced mathematics to full understand.  This report
+will contain an overview of my work, and will also look at some of the
+other implementations of the algorithm in other open source computer
+algebra systems.
 
 Integration is one of the two important operators from calculus, the
 other being differentiation.  Unlike differentiation, however, symbolic
