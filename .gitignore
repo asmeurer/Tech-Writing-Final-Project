@@ -1,0 +1,16 @@
+*.eps
+*.pdf
+*.aux
+*.log
+*.out
+*.dvi
+*.ps
+*.swp
+*.dat
+*.nav
+*.snm
+*.toc
+*.bbl
+*.blg
+
+.DS_Store
