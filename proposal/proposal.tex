@@ -23,14 +23,18 @@ For this project, I am going to study the Risch Algorithm for symbolic
 integration of transcendental\footnote{Transcendental means that the
 functions handled by this sub-part of the algorithm cannot contain
 algebraic functions. More or less, this means that the function cannot
-contain radical expressions like $\sqrt{x + 1}$ or $\sqrt[3]{\ln{x}}$. 
+contain radical expressions like $\sqrt{x + 1}$ or $\sqrt[3]{\ln{x}}$.
 However, it can contain exponentials ($e^x$), logarithms ($\ln{x}$), or
 trigonometric functions ($\sin{x}$).} equations.  The Risch Algorithm is
-a complete algorithm for computing elementary antiderivatives, or
-proving that no such antiderivative exists.  Over the summer of 2010, I
-worked under the Goo\-gle Summer of Code program implementing the
-transcendental part of the algorithm in Sym\-Py, a computer algebra
-system (CAS) written in the Py\-thon programming language.
+a complete algorithm for computing elementary\footnote{If a function is
+elementary, roughly speaking, it means that it can not be represented as
+a combination of exponentials, logarithms, powers, and trig functions by
+addition, subtraction, multiplication, division, composition.}
+antiderivatives, or proving that no such antiderivative exists.  Over
+the summer of 2010, I worked under the Goo\-gle Summer of Code program
+implementing the transcendental part of the algorithm in Sym\-Py, a
+computer algebra system (CAS) written in the Py\-thon programming
+language.
 
 Integration is a fundamental operation in mathematics.  Most sciences
 that apply mathematics to themselves use calculus, which will invariably
@@ -41,14 +45,14 @@ algorithm that not only can compute elementary symbolic integrals, but
 also that can prove that no such one exists when that is the case.
 
 \section{Outline}
-Over the summer of 2010, I worked on implementing the
-transcendental part of the Risch Integration Algorithm in
-Sym\-Py, an open source computer algebra system written in Python.  The
-algorithm is very complex and difficult to implement, and requires some
-understanding of advanced mathematics to fully understand.  This report
-will contain an overview of my work, and will also look at some of the
-other implementations of the algorithm in other open source computer
-algebra systems.
+Over the summer of 2010, I worked on implementing the transcendental
+part of the Risch Integration Algorithm in Sym\-Py, an open source
+computer algebra system written in Python.  The algorithm is very
+complex and difficult to implement, and requires some proficiency of
+advanced mathematics to fully understand.  This report will contain an
+overview of my work, and will also look at some of the other
+implementations of the algorithm in other open source computer algebra
+systems.
 
 Integration is one of the two important operators from calculus, the
 other being differentiation.  Unlike differentiation, however, symbolic
@@ -79,24 +83,21 @@ even though the solution is the relatively simple
 The problem is further complicated by the fact that, unlike the case
 with differentiation, not all elementary function has an elementary
 antiderivative\footnote{By the Fundamental Theorem of Calculus,
-indefinite integration is the inverse of differentiation, hence, we also
-sometimes call it antidifferentiation}.  For example, the function
+indefinite integration is the inverse of differentiation, hence, it is
+sometimes also called antidifferentiation}.  For example, the function
 
 \begin{equation}
 \label{erf}
 \int{e^{-x^2}dx}
 \end{equation}
 
-is not elementary, i.e., it can not be represented as a combination of
-exponentials, logarithms, powers, and trig functions by addition,
-subtraction, multiplication, division, composition.  Up to a constant
-factor, equation \ref{erf} is known as the error function, and used
-heavily in statistics\footnote{In particular, the error function
-represents the cumulative distribution function of the normal
-distribution (i.e., a bell curve), and its values are used to calculate
-probabilities.  The fact that this function is non-elementary implies
-that statistical computing packages must use numerical techniques to
-calculate these values}.
+is not elementary.  Up to a constant factor, equation \ref{erf} is known
+as the error function, and used heavily in statistics\footnote{In
+particular, the error function represents the cumulative distribution
+function of the normal distribution (i.e., a bell curve), and its values
+are used to calculate probabilities.  The fact that this function is
+non-elementary implies that statistical computing packages must use
+numerical techniques to calculate these values}.
 
 It turns out that the Risch Algorithm not only gives a complete
 algorithm for symbolic integration, even for integrals as complex as the
