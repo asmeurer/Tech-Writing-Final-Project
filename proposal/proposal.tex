@@ -19,10 +19,15 @@
 \tableofcontents
 \section{Summary}
 For this project, I am going to study the Risch Algorithm for symbolic
-integration of transcendental equations.  The Risch Algorithm is a
-complete algorithm for computing elementary antiderivatives, or proving
-that no such antiderivative exists.  Over the summer of 2010, I worked
-under the Goo\-gle Summer of Code program implementing the
+integration of transcendental\footnote{Transcendental means that the
+functions handled by this sub-part of the algorithm cannot contain
+algebraic functions. More or less, this means that the function cannot
+contain radical expressions like $\sqrt{x + 1}$ or $\sqrt[3]{\ln{x}}$. 
+However, it can contain exponentials ($e^x$), logarithms ($\ln{x}$), or
+trigonometric functions ($\sin{x}$).} equations.  The Risch Algorithm is
+a complete algorithm for computing elementary antiderivatives, or
+proving that no such antiderivative exists.  Over the summer of 2010, I
+worked under the Goo\-gle Summer of Code program implementing the
 transcendental part of the algorithm in Sym\-Py, a computer algebra
 system (CAS) written in the Py\-thon programming language.
 
@@ -36,12 +41,7 @@ also that can prove that no such one exists when that is the case.
 
 \section{Outline}
 Over the summer of 2010, I worked on implementing the
-transcendental\footnote{Transcendental means that the functions handled
-by this sub-part of the algorithm cannot contain algebraic functions.
-More or less, this means that the function cannot contain radical
-expressions like $\sqrt{x + 1}$ or $\sqrt[3]{\ln{x}}$.  However, it can
-contain exponentials ($e^x$), logarithms ($\ln{x}$), or trigonometric
-functions ($\sin{x}$).} part of the Risch Integration Algorithm in
+transcendental part of the Risch Integration Algorithm in
 Sym\-Py, an open source computer algebra system written in Python.  The
 algorithm is very complex and difficult to implement, and requires some
 understanding of advanced mathematics to fully understand.  This report
