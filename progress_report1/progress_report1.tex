@@ -132,6 +132,33 @@ finish implementing the algorithms from Bronstein's book
     
 
     \end{itemize}
+\item These sources are about the history of the development of the
+Risch algorithm.  They will be good sources for the background section
+of the report.
+    \begin{itemize}
+    \item \textbf{Moses} \cite{moses1971symbolic}: This paper was
+    written in 1971, whereas Risch described his algorithm in 1969
+    \cite{risch1969problem}.  It compares the deterministic Risch
+    algorithms with the heuristics that were employed in computer
+    algebra systems prior to its discovery.  The basic idea of the paper
+    is that the heuristics are weak compared to the full algorithm,
+    which integrates functions directly instead of trying pattern
+    matching, algebraic manipulation, and other such heuristic methods.
+
+    \item \textbf{Risch} \cite{risch1969problem}: This is the seminal
+    paper in which Risch described his algorithm, filling in all the
+    pieces and proving that the problem of integration in finite terms
+    was decidable.  Actually, the algorithm as originally described by
+    Risch was difficult, if not impossible, to actually implement in any
+    computer algebra system.  It required the work of others, such as
+    Bronstein and Davenport \cite{davenport1984integration} to develop
+    the algorithm in ways so that it could be implemented.  Therefore,
+    this paper if anything will provide an interesting comparison to the
+    latest development of the algorithm given in Bronstein's book
+    \cite{bronstein2005symbolic}.
+    \end{itemize}
+
+\end{itemize}
 \nocite{*}
 \bibliographystyle{plain}
 \bibliography{progress_report1}
