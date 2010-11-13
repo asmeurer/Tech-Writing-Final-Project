@@ -87,7 +87,51 @@ by \texttt{asmeurer} is by me).
 \appendix
 \section{Annotated Bibliography}
 \label{annotated-bib}
+\begin{itemize}
+\item These sources all have a common thread: they all are about things
+that I could use to extend the algorithm or are about other algorithms
+related to symbolic integration.  The plan is that someday, when I
+finish implementing the algorithms from Bronstein's book
+\cite{bronstein2005symbolic}, that I will work on these.
+    \begin{itemize}
+    \item \textbf{Bronstein} \cite{bronstein1989simplification}:  This
+    is by the same author as and is referenced by Bronstein's book.  The
+    paper contains an algorithm used in integrating tangents that was
+    not included in the textbook.  Among the things that I am likely to
+    implement in the future going beyond Bronstein's book, this is the
+    most likely, as it is actually requirement for completing the
+    algorithm (I believe Bronstein couldn't fit the material in his
+    book, so he just referenced a paper that had written).
 
+    \item \textbf{Davenport} \cite{davenport1984integration}: This
+    source, like the next one, deals with the algebraic part of the
+    Risch Algorithm.  The Risch Algorithm, being the complicated
+    algorithm that it is, is actually broken up into three parts. 
+    Bronstein's book only covers the first\footnote{First in the sense
+    that the transcendental algorithm must be implemented before the
+    algebraic algorithm can be.} and easiest part, the transcendental
+    part.  The other two parts are the algebraic part, which Davenport
+    details here, and the mixed transcendental-algebraic part (the
+    transcendental part deals with purely transcendental functions, the
+    algebraic part deals with purely algebraic functions, and the
+    transcendental-algebraic part deals with functions that are
+    combinations of both types).
+
+    \item \textbf{Kauers} \cite{kauers2008integration}: This paper
+    describes a simple heuristic algorithm for the part of the algebraic
+    part.  The algebraic part of the algorithm is very difficult to
+    implement---even more so than the transcendental part.  Therefore,
+    sometimes implementors will use a heuristic instead of the full
+    algorithm.  The downside to this is that a heuristic will be unable
+    to prove when no antiderivative exists---it will only return with a
+    failure.  This doesn't constitute a proof of nonexistence because it
+    will sometimes also fail even when an antiderivative does exist,
+    which is another downside of using a heuristic.  However, heuristics
+    are easier to implement and often can act as fast preparsers to the
+    full algorithm.
+    
+
+    \end{itemize}
 \nocite{*}
 \bibliographystyle{plain}
 \bibliography{progress_report1}
