@@ -12,5 +12,7 @@
 *.toc
 *.bbl
 *.blg
+*.lof
+*.lot
 
 .DS_Store
