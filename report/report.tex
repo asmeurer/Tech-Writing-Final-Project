@@ -7,6 +7,7 @@
 \usepackage{amssymb}
 \usepackage{makeidx}
 \usepackage{tabularx}
+\usepackage[toc,xindy]{glossaries}
 \usepackage{url}
 %\usepackage[T1]{fontenc}
 \newcommand{\BibTeX}{{\sc Bib}\TeX}
@@ -19,8 +20,21 @@ Integration and Implementation in the Sym\-Py Computer Algebra System \\(Draft)}
 \date{November 24, 2010}
 \maketitle
 
+\section{stuff}
 
 %\bibliographystyle{plain}
 %\bibliography{report}
 
+
+\newglossaryentry{computer}
+{
+  description={is a programmable machine that receives input,
+               stores and manipulates data, and provides
+               output in a useful format}
+}
+\makeglossaries
+\gls{computer}
+
+\printglossaries
+ 
 \end{document}
