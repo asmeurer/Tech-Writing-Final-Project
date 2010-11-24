@@ -2,8 +2,10 @@ all:
 	pdflatex report.tex
 	bibtex report
 	pdflatex report.tex
+	makeglossaries report
 	pdflatex report.tex
 	makeglossaries report
+	pdflatex report.tex
 	pdflatex report.tex
 	open -a Skim report.pdf
 
@@ -15,8 +17,10 @@ nonstopmode:
 	pdflatex -interaction nonstopmode report.tex
 	bibtex report
 	pdflatex -interaction nonstopmode report.tex
+	makeglossaries report
 	pdflatex -interaction nonstopmode report.tex
 	makeglossaries report
+	pdflatex -interaction nonstopmode report.tex
 	pdflatex -interaction nonstopmode report.tex
 	open -a Skim report.pdf
 
