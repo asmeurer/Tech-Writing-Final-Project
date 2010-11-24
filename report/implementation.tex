@@ -1,4 +1,12 @@
 Details of the implementation in \sympy goes here.
 
-I implemented the algorithms described in~\cite{bronstein2005symbolic}
-in the \sympy \gls{cas}.  
+Over the summer of 2010, as part of the Google Summer of Code program, I
+implemented the algorithms described in Bronstein's
+book~\cite{bronstein2005symbolic} in the \sympy \gls{cas}.  As was noted
+in Section \ref{description}, the algorithm is very complex. 
+Bronstein's book only describes the
+transcendental%\gls{transcendental}
+part of the algorithm. I was able to finish the implementation of most
+of this, so that the algorithm in \sympy can integrate most
+transcendental functions with exponentials and logarithms, %gls
+or prove that no such \antiderivative exists.  
