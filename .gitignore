@@ -18,5 +18,8 @@
 *.glo
 *.gls
 *.ist
+*.acn
+*.acr
+*.alg
 
 .DS_Store
