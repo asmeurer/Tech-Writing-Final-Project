@@ -17,4 +17,4 @@ nonstopmode:
 	open -a Skim report.pdf
 
 clean:
-	rm *.blg *.lof *.log *.lot *.pdf *.toc *.bbl *.aux
+	-rm -f *.blg *.lof *.log *.lot *.pdf *.toc *.bbl *.aux
