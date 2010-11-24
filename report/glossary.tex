@@ -1,1 +1,40 @@
-\newacronym{cas}{CAS}{Computer Algebra System}
+\newglossaryentry{cas}{
+ % how the entry name should appear in the glossary
+name={Computer Algebra System (CAS)},
+ % how the description should appear in the glossary
+ % I have to protect fragile commands
+description={A computer program the performs symbolic operations},
+ % how the entry should appear in the document text
+text={CAS},
+ % how the entry should appear the first time it is
+ % used in the document text
+first={Computer Algebra System (CAS)}}
+
+\newglossaryentry{integration}{
+name={integration},
+description={One of two fundamental operations in \gls{calculus} (the
+other being differentiation).  Integration deals with the area under
+curves.  Informally, $\int_a^b{f(x) dx}$ represents the area under the
+curve defined by the function $f(x)$ from the points $x=a$ to $x=b$.  It
+is an important result from \gls{calculus} called the Fundamental
+Theorem of Calculus that integration and anti-differentiation, the
+inverse operation of \gls{differentiation}, are essentially the same
+thing}
+}
+
+\newglossaryentry{calculus}{
+name={calculus},
+description={The branch of mathematics that studies limits, derivatives,
+integrals, and infinite series.  Informally, calculus is the study of
+change.  Calculus is one of the most applied branch of mathematics; it
+is used in every single branch of the physical sciences}
+}
+
+\newglossaryentry{differentiation}{
+name={differentiation},
+description={One of two fundamental operations in \gls{calculus} (the
+other being integration).  Differentiation deals with the change of
+functions.  The function $\frac{df}{dx}$ is called the derivative of $f$,
+and it informally represents the change, or slope, of the function $f$
+at any point $x$}
+}
