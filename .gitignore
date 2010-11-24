@@ -14,5 +14,9 @@
 *.blg
 *.lof
 *.lot
+*.glg
+*.glo
+*.gls
+*.ist
 
 .DS_Store
