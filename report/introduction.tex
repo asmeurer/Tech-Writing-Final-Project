@@ -1,1 +1,37 @@
-\emph{The introduction goes here.}
+\Gls{calculus} is perhaps the most important branch of mathematics with
+regard to the physical sciences.  \Gls{calculus} has two important
+operations, \gls{differentiation} and its inverse operation,
+\Antidifferentiation, or \gls{integration}.  \Gls{differentiation} is
+easy to apply to any \gls{elementary} function simply by repeatedly
+applying some simple rules, such as the sum, product, and chain rules.
+Furthermore, it is not hard to see from the definitions that the
+derivative of an \gls{elementary} function is again \gls{elementary}.
+
+\Gls{integration} is a different story.  There are many heuristics that
+can be applied to simple integrals---\gls{integration} by substitution,
+\gls{integration} by parts, trigonometric \gls{integration}, and
+trigonometric substitution are a few---but it is easy to come up with
+arbitrarily complex expressions for which none of these methods apply
+but for which there exist an \gls{elementary} solution simply by taking
+differentiating any elementary function of arbitrary complexity.  For
+example, by differentiating
+
+\begin{equation}
+\label{hard-integral-sol}
+\frac{\left(1 + e^{x^{2}}\right)^{2}}{x - \ln{x}}
+\end{equation}
+and simplifying we obtain
+\begin{equation}
+\label{hard-integral}
+    \frac{\left( 1 + e^{x^2} \right)
+        \left(4x^3e^{x^2} - 4x^2e^{x^2}\ln{x} - x + 1 - xe^{x^2} +
+        e^{x^2}\right)}
+    {x\left(\ln{x} - x\right)^2},
+\end{equation}
+which is complicated enough that none of the above mentioned simple
+methods can be applied to it.  It is also unlikely to be found in any
+integration table.  Of course, we could create arbitrarily more complex
+expressions that have elementary \Antiderivative s; for example, we
+could further differentiate equation \ref{hard-integral}. 
+
+But the problem is complicated further by the fact that there exist \gls{elementary} functions for which there does not exist any \gls{elementary} \Antiderivative s.  
