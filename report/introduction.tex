@@ -15,7 +15,6 @@ arbitrarily complex expressions for which none of these methods apply
 but for which there exist an \gls{elementary} solution simply by taking
 differentiating any elementary function of arbitrary complexity.  For
 example, by differentiating
-
 \begin{equation}
 \label{hard-integral-sol}
 \frac{\left(1 + e^{x^{2}}\right)^{2}}{x - \ln{x}}
@@ -34,4 +33,22 @@ integration table.  Of course, we could create arbitrarily more complex
 expressions that have elementary \Antiderivative s; for example, we
 could further differentiate equation \ref{hard-integral}. 
 
-But the problem is complicated further by the fact that there exist \gls{elementary} functions for which there does not exist any \gls{elementary} \Antiderivative s.  
+But the problem is complicated further by the fact that there exist
+\gls{elementary} functions for which there does not exist any
+\gls{elementary} \Antiderivative s.  For example, it can be shown that
+the \gls{error function} (see the Glossary) is not elementary.  Quite a
+few very simple elementary functions do not have elementary
+\Antiderivative s.  See Appendix \ref{nonelementary_examples_appendix}
+for some common examples. Therefore, using a heuristic based
+\gls{integration} method might fail altogether simply because an a
+solution does not exist .
+
+Fortunately, despite its complexity, it turns out that the problem of
+integrating elementary functions or showing that such integral exists
+can be solved algorithmically.  The algorithm is called Risch's
+Algorithm, because it was first proved to be the case by Robert Risch in
+1969 \cite{risch1969problem}.  The ``algorithm'' is very complex
+collection of sub-algorithms.  I implemented the simplest of these, the
+\gls{transcendental} part, which deals with integrating
+\gls{transcendental} functions (see the Glossary), in the \sympy
+\gls{cas} over the summer of 2010.
