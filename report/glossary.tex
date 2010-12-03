@@ -64,3 +64,34 @@ implies that statistical computing packages must use numerical
 techniques to calculate these values, as it does not have a closed form
 solution}
 }
+
+\newglossaryentry{transcendental}{
+name={transcendental},
+description={A function is \gls{transcendental} if it is not
+\gls{algebraic}.  A function is \textit{purely \gls{transcendental}} if
+it does not contain any \gls{algebraic} components.  An important result
+from analysis is that the functions $e^x$, $\ln{x}$, $\sin{x}$,
+$\cos{x}$, and $\tan{x}$ are all \gls{transcendental}.  Roughly
+speaking, a function is \gls{transcendental} if it contains one of
+these, and it is purely \gls{transcendental} if it does not contain any
+radicals.
+%\footnote{There are exceptions to this rule.  For example,
+%$e^{\frac{1}{2}\ln{x}}$ is not transcendental because it is equivalent to
+%$\sqrt{x}$.  An important part of the \gls{transcendental} part of the
+%Risch Algorithm involves making sure that the integrand really is
+%\gls{transcendental}}  
+For example, $e^{x + 1}$ is purely
+\gls{transcendental}, $\sqrt[3]{\ln{x}}$ is \gls{transcendental} but not
+purely \gls{transcendental}, and $\sqrt{x}$ is neither
+\gls{transcendental} nor purely \gls{transcendental} (it is
+\gls{algebraic})}
+}
+
+\newglossaryentry{algebraic}{
+name={algebraic},
+description={A function is \gls{algebraic} if it is the root of a
+polynomial with coefficients that are rational functions with rational
+number coefficients.  For example, the function $\sqrt{x + 1}$ is
+\gls{algebraic} because it is the root of the polynomial $y^2 = x + 1$. 
+A function that is not \gls{algebraic} is called \gls{transcendental}}
+}
