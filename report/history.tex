@@ -1,4 +1,25 @@
-\emph{A brief history of the Risch Algorithm.}
-
 \emph{The relevant references here
 are~\cite{moses1971symbolic,risch1969problem}}
+
+Before Risch discovered the \gls{integration} algorithm, the \glspl{cas}
+that existed used heuristic methods to integrate common functions. Moses
+in his 1971 ``Stormy Decade'' paper \cite{moses1971symbolic} details the
+methods that his SIN \gls{cas} used for integration. SIN was written
+before the Risch algorithm was discovered, so this gives an insight to
+what the integration algorithms in \glspl{cas} looked like before that,
+when they only used heuristic methods.  The method used is a three step
+method: first try to apply the simplest possible heuristic, which
+basically involves trying to pattern match $\int{c\
+\mathrm{op}(u(x))u'(x)\,dx}$.  When an \gls{integrand} has this form,
+the integral can be reduced to simply $c\int{\mathrm{op}(z)\,dz}$, by
+making the substitution $z=u'(x)\,dx$.  If $\mathrm{op}$ has a known
+antiderivative, then the entire integral can be computed.  This is
+essentially the ``$u$-substitution'' heuristic method from calculus.  If
+this method fails, which it will for all but the most simple integrals,
+the second stage is applied.  At this stage, the \gls{integrand} is
+matched against eleven more complicated but simple heuristics for common
+integrals of exponentials, logarithms, trigonometric, and algebraic
+functions.  For example, some of the methods are integration of
+exponentials via the substitution $y=c^x$, integration of expressions
+with $\sqrt{ax^2 + bx + c}$ via an arc\-trig\-o\-no\-met\-ric
+substitution, .
