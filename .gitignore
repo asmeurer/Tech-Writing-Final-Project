@@ -21,5 +21,6 @@
 *.acn
 *.acr
 *.alg
+report/polyrischdenocancel2.tex
 
 .DS_Store
