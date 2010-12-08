@@ -7,13 +7,15 @@ On the left is a reconstruction of the pseudocode for the algorithm \texttt{Pol\
 \begin{algorithm}[H]
     \SetCommentSty{textrm}
     \dontprintsemicolon
-    \TitleOfAlgo{{\bf PolyRischDENoCancel2}($b$, $c$, $D$, $n$)    \tcc*[f]{Poly Risch d.e. -- no cancellation}}\;
+%    \TitleOfAlgo{{\bf PolyRischDENoCancel2}($b$, $c$, $D$, $n$)}
+%    \SetAlgorithmName{{\bf PolyRischDENoCancel2}($b$, $c$, $D$, $n$)}
+    {\bf PolyRischDENoCancel2}($b$, $c$, $D$, $n$)
+    \tcc*[f]{Poly Risch d.e. -- no cancellation}\;
     \BlankLine
     \Indp
 %    \tcc*[f]{Poly Risch d.e. -- no cancellation}}\;
     \BlankLine
-    \tcc*[f]{Poly Risch d.e. -- no cancelation. \\ 
-    Given a derivation $D$ on $k[t]$, $n$ either an integer or
+    \tcc*[f]{Given a derivation $D$ on $k[t]$, $n$ either an integer or
     $+\infty$, and $b, c\in k[t]$ with $\mathrm{deg}(b)< \delta(t) - 1$
     and either $D = d/dt$ or $\delta(t) \geq 2$, return either ``no
     solution'', in which case the equation $Dq + bq = c$ has no solution
