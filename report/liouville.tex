@@ -1,0 +1,19 @@
+At the core of the \gls{integration} algorithm lies an important result
+called Liouville's Theorem.  Roughly, the theorem states that if a
+function $f$ has an \gls{elementary} integral, then the integral can
+always be written in the form
+\begin{equation}
+\label{liouville's theorem}
+\int{f} = v + \sum_{n=1}^n{c_i\ln{u_i}}
+\end{equation}
+where $v$ and the $u_i$ are ``parts'' of $f$, and the $c_i$ are
+constants.  In other words, any \gls{elementary} integral does not add
+any more \gls{elementary} parts from the original, except for a finite
+number of logarithms of those parts.  Again, we use the term ``parts''
+here in a very rough sense; the Theorem is actually very rigorously
+defined (see Bronstein's book, page 145 \cite{bronstein2005symbolic}). 
+This theorem is important because it gives the exact form that any
+eleemntary \antiderivative must have. Therefore, if we can prove that
+there is no function $g$ of the form of Equation \ref{liouville's
+theorem} such that $g'=f$, then we have proven that $f$ does not have an
+\gls{elementary} \antiderivative. 
