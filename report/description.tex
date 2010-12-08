@@ -4,8 +4,8 @@ Algorithm.  The algorithm has three parts:  the \gls{transcendental}
 part, the \gls{algebraic} part, and the mixed part.  The focus of this
 paper is on the \gls{transcendental} part, so we only look at that.
 
-The integration algorithm works recursively.  It integrates whatever the
-highest level function is first, and works its way down.  For example,
+The \gls{integration} algorithm works recursively.  It integrates whatever the
+highest ``level'' function is first, and works its way down.  For example,
 the highest level function in $e^{\sin{(\ln{x})}}$ is
 $e^{\sin{(\ln{x})}}$, followed by $\sin{(\ln{x})}$, $\ln{x}$, and
 finally $x$, which is always the lowest level. The first three parts of
@@ -21,20 +21,20 @@ class), though when it can be applied, it too always returns some
 reduced integral, which may be the same as the original.  The Residue
 Reduction, which finds the logarithmic part of the integral, or the
 $c_i$ and $u_i$ from Equation \ref{liouville's theorem} is the first
-part of the algorithm that can potentially prove that no elementary
+part of the algorithm that can potentially prove that no \gls{elementary}
 integral exists.  In this case, the reduction has shown that no
 logarithmic part can exist, and hence, by Liouville's Theorem, no
-\gls{elementary} integral can exist.  Not all non-\gls{elementary}
+\gls{elementary} integral can exist.  Not all nonelementary
 integrals are proven so at this stage, but, for example, the integral in
 Equation \ref{li} in Appendix \ref{nonelementary_examples_appendix} is
-found to be non-\gls{elementary} at this stage.
+found to be nonelementary at this stage.
 
 After this point, in the algorithm, what remains is (in some sense) a
 polynomial in the highest level function.  The algorithm here splits
-into three parts, depending on what the highest level function.  If it
+into three parts, depending on what type the highest level function is.  If it
 is a logarithm, it goes to the Primitive Case; if it is an exponential,
 it goes to the Exponential Case, and if it is a tangent, it goes to the
-Tangent Case\footnote{One disadvantage about the integration algorithm
+Tangent Case\footnote{One disadvantage about the \gls{integration} algorithm
 is that we must first write all sines and cosines in terms of tangents,
 generally using the formulas $\sin{x} = \frac{2\tan{(\frac{x}{2}})}{1 +
 \tan^2{(\frac{x}{2})}}$ and $\cos{x} = \frac{1 -
@@ -57,20 +57,39 @@ where $f$ and $g$ are derived from $p(x)$ and $q(x)$.\footnote{Note that
 this is not the same as the form given in Equation \ref{SIN exponential
 form} because here $p(x)$ and $q(x)$ are not limited to be
 \glspl{rational function}.  In fact, that heuristic applies only a very
-simple part of the Exponential Case algorithm.}  The equation $y' + fy =
-g$ is called the Risch Differential Equation, and much of Risch's work
-on completing the integration algorithm involved completing a complete
-algorithm for solving it.  The equations for the Primitive Case and the
-Tangent Case are called the Parametric Risch Differential Equation and
-the Coupled Risch Differential Equation System, respectively.  Each of
-these is very similar to the Risch Differential Equation, and the
-algorithms for solving them are similar.
+simple part of the Risch Differential Equation algorithm.}  The equation
+$y' + fy = g$ is called the Risch Differential Equation, and much of
+Risch's work on completing the \gls{integration} algorithm involved
+completing a complete algorithm for solving it.  The equations for the
+Primitive Case and the Tangent Case are called the Parametric Risch
+Differential Equation and the Coupled Risch Differential Equation
+System, respectively.  Each of these is very similar to the Risch
+Differential Equation, and the algorithms for solving them are similar.
 
 Once the specific algorithm for solving the differential equation has
 been applied, either it will have shown that the differential equation
 does not have a solution, in which case it will have proven that the
-remaining integral is not elementary, or it will return part of the
-solution and an integral that only contains functions of the lower
+remaining integral is not \gls{elementary}, or it will return part of
+the solution and an integral that only contains functions of the lower
 levels.  The entire algorithm is applied recursively, until either some
-part proves that the integral is non-\gls{elementary}, or the lowest
-level, $x$, is reached, after which the integration will be complete.  
+part proves that the integral is nonelementary, or the lowest
+level, $x$, is reached, after which the \gls{integration} will be
+complete.  
+
+Among all these parts, the entire algorithm is very complex.  For
+example, the algorithm for solving the Risch Differential Equation has
+five parts, each of which must be split up into separate cases depending
+on what the type of next lower level of the integral is. Also, before
+any \gls{integration} can take place, the \gls{integrand} must be parsed
+into the ``levels''.  This process is complicated by the fact that it
+must be verified that the integral is purely \gls{transcendental} (see
+the Glossary entry for \gls{transcendental}).  This is important because
+a function may appear to be purely \gls{transcendental} but really be
+\gls{algebraic} or \gls{algebraic} over some \gls{transcendental}
+extension.  For example, the function $e^{\frac{1}{2}\ln{x}}$ appears to
+be transcendental, but by the logarithmic power identity and the fact
+that the exponential is the inverse of the logarithm, it is actually
+identically equal to $\sqrt{x}$.  There is an algorithm, called the
+Structure Theorems, for doing this.  This must be implemented or else
+any result that an integral is nonelementary might not be valid
+if the \gls{integrand} is really \gls{algebraic}.  
