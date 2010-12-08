@@ -24,7 +24,12 @@ example, some of the methods are \gls{integration} of exponentials via the
 substitution $y=c^x$, integration of expressions with $\sqrt{ax^2 + bx +
 c}$ via an arc\-trig\-o\-no\-met\-ric substitution, and the specific
 sub-algorithm of the Risch Algorithm that deals with integrals of the
-form $\int{p(x)e^{q(x)}\,dx}$, where $p(x)$ and $q(x)$ are
+form
+\begin{equation}
+\label{SIN exponential form}
+\int{p(x)e^{q(x)}\,dx},
+\end{equation}
+where $p(x)$ and $q(x)$ are
 \glspl{rational function} in $x$ (this is the only part of the SIN
 algorithm that can determine that an integral is not \gls{elementary}).
 The third stage applies more advanced methods such as partial fractions
