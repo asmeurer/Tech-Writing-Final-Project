@@ -26,6 +26,10 @@ nonstopmode:
 	pdflatex -interaction nonstopmode report.tex
 	open -a Skim report.pdf
 
+fast:
+	pdflatex -interaction nonstopmode report.tex
+	open -a Skim report.pdf
+
 python:
 	pygmentize -f latex polyrischdenocancel2.py >| polyrischdenocancel2.tex
 
