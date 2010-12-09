@@ -6,7 +6,7 @@ latex:
 	open -a Skim presentation.pdf
 
 nonstopmode:
-	pdflatex -interaction=nonstopmode report.tex
-	pdflatex -interaction=nonstopmode report.tex
+	pdflatex -interaction=nonstopmode presentation.tex
+	pdflatex -interaction=nonstopmode presentation.tex
 	open -a Skim presentation.pdf
 
