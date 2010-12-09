@@ -1,5 +1,6 @@
-all:
-	pygmentize -o polyrischdenocancel2.tex -f latex polyrischdenocancel2.py
+all:samples python letter latex
+
+latex:
 	pdflatex report.tex
 	bibtex report
 	pdflatex report.tex
@@ -12,10 +13,12 @@ all:
 
 letter:
 	pdflatex letter.tex
+	pdflatex letter.tex
+
+letteropen: letter
 	open -a Skim letter.pdf
 
-nonstopmode:
-	pygmentize -o polyrischdenocancel2.tex -f latex polyrischdenocancel2.py
+nonstopmode: python
 	pdflatex -interaction nonstopmode report.tex
 	bibtex report
 	pdflatex -interaction nonstopmode report.tex
@@ -35,3 +38,7 @@ python:
 
 clean:
 	-rm -f *.blg *.lof *.log *.lot *.pdf *.toc *.bbl *.aux *glg *.glo *.gls *.ist *.acn *.acr *.alg
+
+samples:
+	xelatex sample1.tex
+	xelatex sample1.tex

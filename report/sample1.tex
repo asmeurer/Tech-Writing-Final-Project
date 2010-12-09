@@ -1,0 +1,41 @@
+﻿\documentclass{article}
+\usepackage{fancyvrb}
+\usepackage{color}
+\usepackage{xltxtra}
+\usepackage{xunicode}
+\usepackage{verbatim}
+\usepackage{fontspec}
+\usepackage[margin=0in, paperwidth=6in, paperheight=4in]{geometry}
+
+\setmonofont{Menlo}
+\tracingonline=1
+\begin{document}
+
+\normalsize
+\begin{Verbatim}
+In [1]: f1 = (1 + exp(x**2))*(1 - x - 4*x**2*exp(x**2)*log(x) - 
+   ...: x*exp(x**2) + 4*x**3*exp(x**2) + exp(x**2))/(x*(x - log(x))**2)
+
+In [2]: f1
+Out[2]: 
+⎛ ⎛ 2⎞    ⎞ ⎛      ⎛ 2⎞         ⎛ 2⎞             ⎛ 2⎞        ⎛ 2⎞    ⎞
+⎜ ⎝x ⎠    ⎟ ⎜   3  ⎝x ⎠      2  ⎝x ⎠             ⎝x ⎠        ⎝x ⎠    ⎟
+⎝e     + 1⎠⋅⎝4⋅x ⋅e     - 4⋅x ⋅e    ⋅log(x) - x⋅e     - x + e     + 1⎠
+──────────────────────────────────────────────────────────────────────
+                                         2                            
+                           x⋅(x - log(x))                             
+
+In [3]: factor(cancel(risch_integrate(f1, x, handle_first='exp')))
+Out[3]: 
+           2
+⎛ ⎛ 2⎞    ⎞ 
+⎜ ⎝x ⎠    ⎟ 
+⎝e     + 1⎠ 
+────────────
+ x - log(x) 
+
+In [4]: %timeit factor(cancel(risch_integrate(f1, x, handle_first='exp')))
+1 loops, best of 3: 390 ms per loop
+
+\end{Verbatim}
+\end{document}
