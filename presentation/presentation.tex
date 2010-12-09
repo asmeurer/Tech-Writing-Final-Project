@@ -53,6 +53,76 @@ Integration and Implementation in the SymPy Computer Algebra System}
     \tableofcontents 
 \end{frame} 
 
+\section{Background}
+\subsection{Terms}
+
+\begin{frame}
+    \frametitle{Definitions}
+    \begin{itemize}
+        \item {\bf Integration} 
+        \begin{itemize}
+            \item One of two fundamental operations in calculus (the other
+            being differentiation).
+            \item Informally, $\int_a^b{f(x)\,dx}$ represents the area under
+            the curve defined by the function $f(x)$ from the points $x=a$
+            to $x=b$.
+            \item The Fundamental Theorem of Calculus states that
+            integration and antidifferentiation, the inverse operation of
+            differentiation, are essentially the same thing.
+            \end{itemize}
+    \pause
+        \item {\bf Algebraic}
+        \begin{itemize}
+            \item A function is algebraic if it is the root of a polynomial
+            with coefficients that are rational functions with rational
+            number coefficients.  
+            \item For example, the function $\sqrt{x + 1}$ is algebraic
+            because it is the root of the polynomial $y^2 = x + 1$. 
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Definitions}
+    \begin{itemize}
+        \item {\bf Transcendental}
+        \begin{itemize}
+            \item A function is transcendental if it is not algebraic.  
+            \item A function is \textit{purely transcendental} if it does
+            not contain any algebraic components.  
+            \item $e^x$, $\ln{x}$, $\sin{x}$, $\cos{x}$, and $\tan{x}$ are
+            all transcendental.  
+            \item Roughly speaking, a function is transcendental if it
+            contains one of these, and it is purely transcendental if it
+            does not contain any radicals.
+            \begin{itemize}
+                \item $e^{x + 1}$ is purely transcendental
+                \item $\sqrt[3]{\ln{x}}$ is transcendental but not
+                purely transcendental
+                \item $\sqrt{x}$ is neither transcendental nor purely
+                transcendental (it is algebraic)
+            \end{itemize}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Definitions}
+    \begin{itemize}
+        \item {\bf Elementary}
+        \begin{itemize}
+            \item Roughly speaking, a function is elementary if it can
+            be represented as a combination of exponentials, logarithms,
+            powers, and trigonometric functions by addition,
+            subtraction, multiplication, division, and composition. 
+            \item For example, $\frac{\sin{(x^2 +
+            1)}}{\sqrt[3]{\ln{x}}}$ is elementary, but
+            $\frac{2}{\sqrt{\pi}}\int{e^{-x^2}\,dx}$, the error
+            function, is not.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
 \section{The Risch Algorithm}
 
 \subsection{Liouville's Theorem}
@@ -60,7 +130,17 @@ Integration and Implementation in the SymPy Computer Algebra System}
 \begin{frame}
     \frametitle{Liouville's Theorem}
     \begin{itemize}
-    \item something
+        \item If a function $f$ has an elementary integral, then the
+        integral can always be written in the form
+        \begin{equation}
+            \label{liouville's theorem}
+            \int{f} = v + \sum_{n=1}^n{c_i\ln{u_i}}
+        \end{equation}
+        where $v$ and the $u_i$ are ``parts'' of $f$, and the $c_i$ are
+        constants.
+        \pause
+        \item In other words, if we can show that $\int{f}$ does not
+        have this form, then we have shown that it is not elementary.
     \end{itemize}
 \end{frame}
 
