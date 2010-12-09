@@ -1,5 +1,5 @@
 all:
-	pygmentize -f latex polyrischdenocancel2.py >| polyrischdenocancel2.tex
+	pygmentize -o polyrischdenocancel2.tex -f latex polyrischdenocancel2.py
 	pdflatex report.tex
 	bibtex report
 	pdflatex report.tex
@@ -15,7 +15,7 @@ letter:
 	open -a Skim letter.pdf
 
 nonstopmode:
-	pygmentize -f latex polyrischdenocancel2.py >| polyrischdenocancel2.tex
+	pygmentize -o polyrischdenocancel2.tex -f latex polyrischdenocancel2.py
 	pdflatex -interaction nonstopmode report.tex
 	bibtex report
 	pdflatex -interaction nonstopmode report.tex
