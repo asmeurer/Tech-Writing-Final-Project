@@ -7,7 +7,9 @@ complex. Bronstein's book only describes the \gls{transcendental} part
 of the algorithm. I was able to finish the implementation of most of
 this, so that the algorithm in SymPy can integrate most
 \gls{transcendental} functions with exponentials and logarithms, or
-prove that no such antiderivative exists.
+prove that no such antiderivative exists.  I did not complete some
+corner cases, and I also did not have time to write the trigonometric
+case.
 
 The Risch Algorithm is essentially a collection of polynomial
 manipulation algorithms.  Fortunately, SymPy has an excellent polynomial
@@ -18,5 +20,31 @@ lower levels, though I did have to learn how to use the polys module, as
 it is called, pretty well, and there were a few cases where I had to fix
 a few bugs in it.
 
-\emph{This will, among other things, include some
-sample sessions demonstrating the algorithm.}
+Before my project, SymPy had a function called \texttt{integrate()} that
+performed symbolic integration.  However, this function used a
+combination of heuristics, similar to those described in Section
+\ref{history}, and a simpler to implement heuristic version of the Risch
+Algorithm called the Risch-Norman Algorithm, or the Parallel Risch
+Algorithm.  \texttt{integrate()} was able to handle a wide class of
+functions, but it was slow, and often failed to produce a result when
+one existed.  Also, none of these heuristics have the ability to prove
+that an \gls{elementary} integral exists, they simply return the
+integral unevaluated, which is the same thing that it does when it fails
+for an integral that does have an closed form solution, so that there is
+no way to know if it failed because an answer doesn't exist or because
+the heuristic could not find one.
+
+Because my implementation of the Risch Algorithm is not complete, and
+because I wanted to be able to compare it to the old implementation, I
+did not replace the code in \texttt{integrate()}.  Rather, I created a
+new function, \rischintegrate{}, which acts as a front end to the Risch
+Algorithm implementation.  The result was very succesful.  Not only
+could the algorithm prove that a nonelementary integral doesn't exist
+when that was the case, but it was also much faster, and could handle a
+much larger set of functions (all \gls{transcendental} \gls{elementary}
+functions, instead of just functions that are simple enough to pass
+through the heuristic).
+
+\subsection{Sample Session} 
+\label{sample} 
+%\input{sample}
