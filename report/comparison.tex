@@ -1,4 +1,9 @@
-On the left is a reconstruction of the pseudocode for the algorithm \texttt{Pol\-y\-Risch\-DE\-No\-Can\-cel} from page 209 of Bronstein's book \cite{bronstein2005symbolic}. On the right is the implementation of the same algorithm in \SymPy.  
+Below is a reconstruction of the pseudocode for the algorithm
+\texttt{Pol\-y\-Risch\-DE\-No\-Can\-cel2} from page 209 of Bronstein's
+book \cite{bronstein2005symbolic}. Below that is the implementation of
+the same algorithm in SymPy.  This algorithm is one of the the
+subroutines of the algorithm to solve the Risch Differential Equation
+(see Section \ref{description}).  
 
 %\begin{multicols}{2}
 %\tiny
@@ -6,6 +11,7 @@ On the left is a reconstruction of the pseudocode for the algorithm \texttt{Pol\
 % there's also \scriptsize and \tiny
 \begin{algorithm}[H]
     \SetCommentSty{textrm}
+    \SetFillComment
     \dontprintsemicolon
 %    \TitleOfAlgo{{\bf PolyRischDENoCancel2}($b$, $c$, $D$, $n$)}
 %    \SetAlgorithmName{{\bf PolyRischDENoCancel2}($b$, $c$, $D$, $n$)}
@@ -43,5 +49,22 @@ On the left is a reconstruction of the pseudocode for the algorithm \texttt{Pol\
     }
     \Return $q$
 \end{algorithm}
+\input{polyrischdenocancel2_head}
+\input{polyrischdenocancel2}
 \normalsize
 %\end{multicols}
+
+This function is a good example of a function that translates almost
+exactly from pseudocode into SymPy Python.  Therefore, any differences
+are the result of the implementation details of SymPy.  Aside from the
+syntax differences between the pseudocode and Python, there are very
+little such differences.  The main thing is that in SymPy we must use
+the \texttt{Poly} class to do polynomial manipulations.  For example, we
+have \texttt{p = Poly(}{}\texttt{c.as\_poly(t).LC()/}{}\texttt{b.as\_poly(t).LC(), t)} instead
+of $p \leftarrow \mathrm{lc}(c)/\mathrm{lc}(b)$.  Thus, this example
+serves to show some of the advantages of using Python and SymPy to when
+working with an algorithm as complex as the Risch Algorithm.  Because
+the SymPy Python code is almost exactly the same as the pseudocode, it
+is just as easy to read and understand. This also makes much easier to
+maintain against the pseudocode, since any typo in the Python will be
+easy to spot.
