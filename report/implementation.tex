@@ -1,15 +1,22 @@
-\emph{Details of the implementation in SymPy goes here.}
+Over the summer of 2010, as part of the Google Summer of Code
+program\footnote{ See \url{http://code.google.com/soc/} for more
+information about the program.}, I implemented the algorithms described
+in Bronstein's book~\cite{bronstein2005symbolic} in the SymPy \gls{cas}.
+As was noted in Section \ref{description}, the algorithm is very
+complex. Bronstein's book only describes the \gls{transcendental} part
+of the algorithm. I was able to finish the implementation of most of
+this, so that the algorithm in SymPy can integrate most
+\gls{transcendental} functions with exponentials and logarithms, or
+prove that no such antiderivative exists.
 
-Over the summer of 2010, as part of the Goo\-gle Summer of Code program, I
-implemented the algorithms described in Bronstein's
-book~\cite{bronstein2005symbolic} in the SymPy \gls{cas}.  As was noted
-in Section \ref{description}, the algorithm is very complex. 
-Bronstein's book only describes the
-transcendental%\gls{transcendental}
-part of the algorithm. I was able to finish the implementation of most
-of this, so that the algorithm in SymPy can integrate most
-transcendental functions with exponentials and logarithms, %gls
-or prove that no such antiderivative exists.  
+The Risch Algorithm is essentially a collection of polynomial
+manipulation algorithms.  Fortunately, SymPy has an excellent polynomial
+manipulation module, which was written by Mateusz Paprocki, who was also
+my mentor for the Google Summer of Code program.  Therefore, I was able
+to implement the algorithm mostly without having to deal with details on
+lower levels, though I did have to learn how to use the polys module, as
+it is called, pretty well, and there were a few cases where I had to fix
+a few bugs in it.
 
-\emph{This will, among other things, include some sample sessions
-demonstrating the algorithm.}
+\emph{This will, among other things, include some
+sample sessions demonstrating the algorithm.}
