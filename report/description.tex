@@ -56,13 +56,13 @@ is equivalent to finding a solution $y$ to the equation $y' + fy = g$,
 where $f$ and $g$ are derived from $p(x)$ and $q(x)$.\footnote{Note that
 this is not the same as the form given in Equation \ref{SIN exponential
 form} because here $p(x)$ and $q(x)$ are not limited to be
-\glspl{rational function}.  In fact, that heuristic applies only a very
-simple part of the Risch Differential Equation algorithm.}  The equation
-$y' + fy = g$ is called the Risch Differential Equation, and much of
-Risch's work on completing the \gls{integration} algorithm involved
-completing a complete algorithm for solving it.  The equations for the
-Primitive Case and the Tangent Case are called the Parametric Risch
-Differential Equation and the Coupled Risch Differential Equation
+\glspl{rational function}.  In fact, that heuristic implements only a
+very simple part of the Risch Differential Equation algorithm.}  The
+equation $y' + fy = g$ is called the Risch Differential Equation, and
+much of Risch's work on completing the \gls{integration} algorithm
+involved completing a complete algorithm for solving it.  The equations
+for the Primitive Case and the Tangent Case are called the Parametric
+Risch Differential Equation and the Coupled Risch Differential Equation
 System, respectively.  Each of these is very similar to the Risch
 Differential Equation, and the algorithms for solving them are similar.
 
@@ -72,9 +72,8 @@ does not have a solution, in which case it will have proven that the
 remaining integral is not \gls{elementary}, or it will return part of
 the solution and an integral that only contains functions of the lower
 levels.  The entire algorithm is applied recursively, until either some
-part proves that the integral is nonelementary, or the lowest
-level, $x$, is reached, after which the \gls{integration} will be
-complete.  
+part proves that the integral is nonelementary, or the lowest level,
+$x$, is reached, after which the \gls{integration} will be complete.
 
 Among all these parts, the entire algorithm is very complex.  For
 example, the algorithm for solving the Risch Differential Equation has
@@ -91,5 +90,5 @@ be transcendental, but by the logarithmic power identity and the fact
 that the exponential is the inverse of the logarithm, it is actually
 identically equal to $\sqrt{x}$.  There is an algorithm, called the
 Structure Theorems, for doing this.  This must be implemented or else
-any result that an integral is nonelementary might not be valid
-if the \gls{integrand} is really \gls{algebraic}.  
+any result that an integral is nonelementary might not be valid if the
+\gls{integrand} is really \gls{algebraic}.  
