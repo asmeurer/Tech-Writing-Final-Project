@@ -11,24 +11,22 @@
 \usepackage[toc,acronym,description]{glossaries}
 \usepackage{cite}
 \usepackage{hyperref}
-\usepackage[noend,boxed]{algorithm2e}
+\usepackage[noend,boxed,fillcomment]{algorithm2e}
 \usepackage{multicol}
+\usepackage{fancyvrb}
+\usepackage{color}
 % use \usepackage[pdfborder=0in]{hyperref} instead to disable red box links
 %\usepackage[T1]{fontenc}
 \newcommand{\BibTeX}{{\sc Bib}\TeX}
 \newcommand{\bibtex}{{\sc Bib}\TeX\ }
 \newcommand{\latex}{\LaTeX\ }
-\newcommand{\sympy}{Sym\-Py\ }
-\newcommand{\SymPy}{Sym\-Py}
-\newcommand{\antiderivative}{an\-ti\-der\-iv\-a\-tive\ }
-\newcommand{\Antiderivative}{an\-ti\-der\-iv\-a\-tive}
-\newcommand{\antidifferentiation}{an\-ti\-diff\-er\-en\-tia\-tion\ }
-\newcommand{\Antidifferentiation}{an\-ti\-diff\-er\-en\-tia\-tion}
+\hyphenation{Sym-Py an-ti-der-iv-a-tive an-ti-der-iv-a-tives
+an-ti-diff-er-en-tia-tion}
 \makeglossaries
 \glsenablehyper
 \begin{document}
 \title{Report on the Risch Algorithm for Symbolic
-Integration and Implementation in the Sym\-Py Computer Algebra System}
+Integration and Implementation in the SymPy Computer Algebra System}
 \author{Aaron Meurer}
 \date{December 9, 2010}
 \maketitle
@@ -59,7 +57,7 @@ Integration and Implementation in the Sym\-Py Computer Algebra System}
 \label{description}
 \input{description}
 
-\section{Implementation in \SymPy}
+\section{Implementation in SymPy}
 \label{implementation}
 \input{implementation}
 
@@ -78,7 +76,7 @@ Integration and Implementation in the Sym\-Py Computer Algebra System}
 \input{nonelementary_examples_appendix}
 
 \section{Comparison of Pseudcode from Bronstein's Book
-\cite{bronstein2005symbolic} and \texttt{risch\_integrate()} in \SymPy}
+\cite{bronstein2005symbolic} and \texttt{risch\_integrate()} in SymPy}
 \label{comparison}
 \input{comparison}
 
