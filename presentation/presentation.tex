@@ -1,6 +1,16 @@
-\documentclass[10pt]{beamer}
+\documentclass{beamer}
 
 \usetheme{Torino}
+\AtBeginSection[] 
+{ 
+  \begin{frame}<beamer> 
+    \frametitle{Agenda} 
+    \tableofcontents[currentsection] 
+  \end{frame} 
+}  % for recurrent Agenda slide
+\numberwithin{equation}{section} % Number equations with sections
+
+
 
 \usepackage{amsmath}
 \usepackage{amsfonts}
