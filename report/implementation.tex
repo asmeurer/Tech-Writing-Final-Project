@@ -62,7 +62,7 @@ Below is an annotated sample session demonstrating \rischintegrate{} in action. 
 \begin{itemize}
 \item SymPy runs in a Python interpreter from the command line. iSymPy is
 a script that automatically imports SymPy functions and creates common
-variable names.  The below is running in \texttt{isympy} in the iPython
+variable names.  The below is running in iSymPy in the IPython
 Python intrepeter.
 
 \item SymPy uses unicode characters to pretty-print the equations. 
@@ -82,7 +82,7 @@ development branch as the time of this writing.
 so that it can be more compact or so that it is in the same form as
 given before.
 
-\item As with most \glspl{cas} integrators, the arbitrary constant, or
+\item As with most \gls{cas}'s integrators, the arbitrary constant, or
 constant of integration, is omitted.  
 
 \item The syntax for \rischintegrate{} is \texttt{risch\_integrate(f, x)},
@@ -104,12 +104,13 @@ few examples to compare results or timings.
 \item If \rischintegrate{} returns an unevaluated integral, this means
 that it has proven that the integral is not \gls{elementary}.  If it
 fails (for example, because the case has not yet been implemented, or
-because the equation is not \gls{elementary} purely
-\gls{transcendental}), it will raise the \texttt{NotImplementedError}
+because the equation is not purely \gls{transcendental} or
+\gls{elementary}), it will raise the \texttt{NotImplementedError}
 exception.  None of the examples below raise this exception.
 
-\item As with many \glspl{cas}, SymPy uses $\log$ instead of $\ln$. 
-In SymPy, $\log$ means the natural logarithm, or log base $e$.
+\item As with many \glspl{cas}, SymPy uses $\log$ instead of $\ln$. In
+SymPy, `$\log$' means the natural logarithm, or log base $e$, and is the
+same as `$\ln$'.
 
 \item As is also common convention with \glspl{cas}, \texttt{exp(x)} is
 the syntax for $e^x$.
@@ -166,17 +167,17 @@ Finally, we look at an example that demonstrates the speed differences
 between \rischintegrate{} and \texttt{integrate()}.  The following
 example suggests that \rischintegrate{} is not only several orders of
 magnitude faster than \texttt{integrate()}, but it is also asymptotically
-faster.  This means that if you increase the size of the problem, the
+faster.  This means that if the size of the problem is increased, the
 corresponding increase in the time it takes to solve the problem is less
 for \rischintegrate{} than for \texttt{integrate()}.  In this case, it
 appears (based on further numbers than those given below) that for the
 the time to compute $\int{x^ne^x\,dx}$ \rischintegrate{} takes $O(n^2)$
-time to compute the answer (roughly quadratic with $n$), where as
+time to compute the answer (roughly quadratic with $n$), whereas
 \texttt{integrate()} takes $O(n^3)$ time to compute the answer (roughly
-cubic).  Note that $\int{x^ne^x\,dx}$ has $n + 1$ terms, so it must take
-at least $O(n)$ time to compute.  This means that even if
+cubic with $n$).\footnote{Note that $\int{x^ne^x\,dx}$ is always \gls{elementary} and has $n + 1$ terms, so it must take
+at least $O(n)$ time to compute.}  This means that even if
 \texttt{integrate()} were not slow for small $n$, it would become
-unreasonably slow for $n$ that is only somewhat larger.  Even as it is,
+unreasonably slow for $n$ that is only somewhat larger.  As it is,
 \texttt{integrate()} would take several minutes to compute
 $\int{x^{100}e^x\,dx}$, whereas \rischintegrate{} can compute it in less
 than half a second.
