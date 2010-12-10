@@ -64,3 +64,5 @@ samples:
 	xelatex sample11.tex
 	xelatex sample12.tex
 	xelatex sample12.tex
+	xelatex sample13.tex
+	xelatex sample13.tex

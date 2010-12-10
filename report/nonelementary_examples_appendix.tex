@@ -35,6 +35,10 @@ solutions.
 \label{exp_x_ln_x}
 \int{e^x\ln{x}\,dx}
 \end{equation}
+\begin{equation}
+\label{exp_exp_x}
+\int{e^{e^x}\,dx}
+\end{equation}
 
 \textbf{Notes}
 \begin{itemize}
@@ -46,15 +50,18 @@ solutions.
 $\mathrm{Si}(x)$ (Sine Integral) and $\mathrm{Ci}(x)$ (Cosine Integral),
 respectively.  Similar integrals with $e^x$, $\cosh{x}$, and $\sinh{x}$
 are also nonelementary and have corresponding named special functions.
+
 \item Integrals \ref{erf}, \ref{exp_x_squared}, \ref{li},
-\ref{x_to_the_x}, \ref{x_to_the_neg_x}, and \ref{exp_x_ln_x}, as well as
-the additional integrals noted in the previous bullet point, can all be
-proved to be nonelementary using \rischintegrate{} (see Section \ref{sample}).
-The remaining integrals are trigonometric and hence not implemented yet
-(see Section \ref{future}).  However, the fact that they are not
-\gls{elementary} is can be shown by applying the relevant part of the Risch
-Algorithm to them. For example, the steps  for integral \ref{Si} are
-worked out in in Bronstein's book~\cite{bronstein2005symbolic}, page 169.
+\ref{x_to_the_x}, \ref{x_to_the_neg_x}, \ref{exp_x_ln_x}, and
+\ref{exp_exp_x}, as well as the additional integrals noted in the
+previous bullet point, can all be proved to be nonelementary using
+\rischintegrate{} (see Section \ref{sample}). The remaining integrals
+are trigonometric and hence not implemented yet (see Section
+\ref{future}).  However, the fact that they are not \gls{elementary} is
+can be shown by applying the relevant part of the Risch Algorithm to
+them. For example, the steps  for integral \ref{Si} are worked out in in
+Bronstein's book~\cite{bronstein2005symbolic}, page 169.
+
 \item There are many classic nonelementary integrals of
 non-\gls{transcendental} \gls{elementary} functions, such as the hyperbolic
 integrals.  We do not look at these here, as the focus of this paper is

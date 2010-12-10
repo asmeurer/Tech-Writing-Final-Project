@@ -5,7 +5,7 @@
 \usepackage{xunicode}
 \usepackage{verbatim}
 \usepackage{fontspec}
-\usepackage[margin=0in, paperwidth=6in, paperheight=1.37in]{geometry}
+\usepackage[margin=0in, paperwidth=6in, paperheight=.86in]{geometry}
 % 6 in width for 80 characters
 % 1.03 in = 6 lines
 % Add an extra line at the bottom for spacing
@@ -15,12 +15,9 @@
 
 \normalsize
 \begin{Verbatim}
-In [13]: risch_integrate(exp(exp(x)), x)
+In [13]: risch_integrate(2*log(x)/x, x)
 Out[13]: 
-⌠         
-⎮  ⎛ x⎞   
-⎮  ⎝e ⎠   
-⎮ e     dx
-⌡         
+   2   
+log (x)
 \end{Verbatim}
 \end{document}
