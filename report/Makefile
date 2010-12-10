@@ -42,3 +42,25 @@ clean:
 samples:
 	xelatex sample1.tex
 	xelatex sample1.tex
+	xelatex sample2.tex
+	xelatex sample2.tex
+	xelatex sample3.tex
+	xelatex sample3.tex
+	xelatex sample4.tex
+	xelatex sample4.tex
+	xelatex sample5.tex
+	xelatex sample5.tex
+	xelatex sample6.tex
+	xelatex sample6.tex
+	xelatex sample7.tex
+	xelatex sample7.tex
+	xelatex sample8.tex
+	xelatex sample8.tex
+	xelatex sample9.tex
+	xelatex sample9.tex
+	xelatex sample10.tex
+	xelatex sample10.tex
+	xelatex sample11.tex
+	xelatex sample11.tex
+	xelatex sample12.tex
+	xelatex sample12.tex
