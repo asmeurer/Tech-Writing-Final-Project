@@ -21,7 +21,7 @@ polys module, as it is called, pretty well, and there were a few cases
 where I had to fix some bugs in it.
 
 Before my project, SymPy had a function called \texttt{integrate()} that
-performed symbolic integration.  However, this function used a
+performed symbolic \gls{integration}.  However, this function used a
 combination of heuristics, similar to those described in Section
 \ref{history}, and a simpler to implement heuristic version of the Risch
 Algorithm called the Risch-Norman Algorithm, or the Parallel Risch
@@ -83,11 +83,11 @@ so that it can be more compact or so that it is in the same form as
 given before.
 
 \item As with most \gls{cas}'s integrators, the arbitrary constant, or
-constant of integration, is omitted.  
+constant of \gls{integration}, is omitted.  
 
 \item The syntax for \rischintegrate{} is \texttt{risch\_integrate(f, x)},
 where \texttt{f} is the expression to be integrated and \texttt{x} is
-the integration variable.
+the \gls{integration} variable.
 
 \item In a few examples, I have included \texttt{handle\_first='exp'} at
 the end of the \rischintegrate{} function call.  This affects the order in
