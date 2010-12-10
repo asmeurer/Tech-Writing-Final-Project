@@ -27,12 +27,14 @@ combination of heuristics, similar to those described in Section
 Algorithm called the Risch-Norman Algorithm, or the Parallel Risch
 Algorithm.  \texttt{integrate()} was able to handle a wide class of
 functions, but it was slow, and often failed to produce a result when
-one existed.  Also, none of these heuristics have the ability to prove
-that an \gls{elementary} integral exists, they simply return the
-integral unevaluated, which is the same thing that it does when it fails
-for an integral that does have an closed form solution, so that there is
-no way to know if it failed because an answer doesn't exist or because
-the heuristic could not find one.
+one existed.  It also had a tendency to hang on hard integrals, forcing
+the user to interrupt the execution of the function.  Also, none of
+these heuristics have the ability to prove that an \gls{elementary}
+integral exists, they simply return the integral unevaluated, which is
+the same thing that it does when it fails for an integral that does have
+an closed form solution, so that there is no way to know if it failed
+because an answer doesn't exist or because the heuristic could not find
+one.
 
 Because my implementation of the Risch Algorithm is not complete, and
 because I wanted to be able to compare it to the old implementation, I
@@ -46,5 +48,100 @@ functions, instead of just functions that are simple enough to pass
 through the heuristic).
 
 \subsection{Sample Session} 
-\label{sample} 
-\includegraphics[width=1\textwidth]{sample1.pdf}
+\label{sample}
+
+Below is an annotated sample session demonstrating \rischintegrate{} in action.  A few notes:
+\begin{itemize}
+\item SymPy runs in a Python intrepeter from the command line.
+iSymPy is a script that automatically imports SymPy functions and
+creates common variable names.  The below is running in \texttt{isympy
+-o lex} in the iPython Python intrepeter.
+
+\item SymPy uses unicode characters to pretty-print the equations. 
+What is shown below is exactly what you would see in a actual iSymPy
+session.
+
+\item \texttt{\%timeit} is an iPython command that executes the command
+multiple times and reports on the running time of the function. I have
+placed these in for a few of the integrals to demonstrate the speed of
+the algorithm.  All timeings come from a 2008 MacBook Pro with a 2.5 GHz
+Intel Core 2 Duo processor and 4 GB of RAM.  The session is running in
+Python 2.7.1, with the latest version of my \texttt{integration3}
+development branch as the time of this writing.  
+
+\item In some cases, I have wrapped \rischintegrate{} around
+\texttt{factor()} or \texttt{cancel()}.  This is to simplify the result
+so that it can be more compact or so that it is in the same form as
+given before.
+
+\item As with most \glspl{cas} integrators, the arbitrary constant, or
+constant of integration, is ommited.  
+
+\item The syntax for \rischintegrate{} is \texttt{risch\_integrate(f, x)},
+where \texttt{f} is the expression to be integrated and \texttt{x} is
+the integration variable.
+
+\item In a few examples, I have included \texttt{handle\_first='exp'} at
+the end of the \rischintegrate{} function call.  This affects the order in
+which the ``parts'' discussed at the end of Section \ref{description}
+are collected.  In the cases where I have used it here, the result is
+simpler, or returns faster.  I have not yet completely figured out the
+best way to do this automatically so that it produces the best result
+without user intervention.  
+
+\item Remember that \texttt{integrate()} is the old \gls{integration}
+engine and \rischintegrate{} is the new engine.  I have run them both in a
+few examples to compare results or timeings.  
+
+\item If \rischintegrate{} returns an unevaluated integral, this means
+that it has proven that the integral is not \gls{elementary}.  If it
+fails (for example, because the case has not yet been implemented, or
+because the equation is not \gls{elementary} purely
+\gls{transcendental}), it will raise the \texttt{NotImplementedError}
+exception.  None of the examples below raise this exception.
+
+\item As with many \glspl{cas}, SymPy uses $\log$ instead of $\ln$. 
+In SymPy, 1$\log$ means the natural logarithm, or log base $e$.
+\end{itemize}
+
+First, let us revisit Equation \ref{hard-integral}.  As we can see,
+\rischintegrate{} has no problem generating the solution from Equation
+\ref{hard-integral-sol}, and does so quickly.  The old
+\texttt{integrate()} function hangs on this integral.
+
+\begin{flushleft}
+\includegraphics[width=1\textwidth]{sample1.pdf}\\
+\includegraphics[width=1\textwidth]{sample2.pdf}\\
+\includegraphics[width=1\textwidth]{sample3.pdf}\\
+\includegraphics[width=1\textwidth]{sample4.pdf}
+\end{flushleft}
+
+Next, let us look at those equations from Appendix
+\ref{nonelementary_examples_appendix} that do not have
+trigonmetric parts.  \rischintegrate{} returns an unevaluated integral for
+each, meaning that it can prove that each is nonelementary.  Due to a
+current limitation in the algorithm, we must first rewrite Equations
+\ref{x_to_the_x} and \ref{x_to_the_neg_x} as $e^{x\ln{x}}$ and
+$e^{-x\ln{x}}$, respectively.  These forms are mathematically equivalent.
+
+\begin{flushleft}
+\includegraphics[width=1\textwidth]{sample5.pdf}
+\includegraphics[width=1\textwidth]{sample6.pdf}
+\includegraphics[width=1\textwidth]{sample7.pdf}
+\includegraphics[width=1\textwidth]{sample8.pdf}
+\includegraphics[width=1\textwidth]{sample9.pdf}
+\includegraphics[width=1\textwidth]{sample10.pdf}
+\end{flushleft}
+
+Here is an example of the sort of thing discussed in Section
+\ref{history}.  The old \texttt{integrate()} cannot handle this
+integral, so it returns an unevaluated integral\footnote{Unlike with
+\rischintegrate{}, when \textttt{integrate()} returns an unevalauted
+integral, it does not necessarily mean that the integral is
+nonelementary.}.  \rischintegrate{} is able to handle the integral just
+fine.
+
+\begin{flushleft}
+\includegraphics[width=1\textwidth]{sample11.pdf}
+\includegraphics[width=1\textwidth]{sample12.pdf}
+\end{flushleft}
