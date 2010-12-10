@@ -29,6 +29,8 @@
 \usepackage{fancyvrb}
 \usepackage{color}
 \usepackage{subfigure}
+\usepackage{graphicx}
+\usepackage{pdfpages}
 % use \usepackage[pdfborder=0in]{hyperref} instead to disable red box links
 %\usepackage[T1]{fontenc}
 \newcommand{\BibTeX}{{\sc Bib}\TeX}
@@ -36,6 +38,8 @@
 \hyphenation{Sym-Py an-ti-der-iv-a-tive an-ti-der-iv-a-tives
 an-ti-diff-er-en-tia-tion Goo-gle arc-trig-o-no-met-ric
 non-el-e-men-tary}
+\input{../report/python_head}
+
 
 \title{Report on the Risch Algorithm for Symbolic
 Integration and Implementation in the SymPy Computer Algebra System}
@@ -147,12 +151,95 @@ Integration and Implementation in the SymPy Computer Algebra System}
 \subsection{The Transcendental Algorithm}
 
 \begin{frame}
-    something
+    \frametitle{The Transcendental Algorithm}
+    \begin{itemize}
+        \item First we must parse the expression
+        \item Make sure it is purley transcendental
+        \begin{itemize}
+            \item e.g., $e^{\frac{1}{2}\ln{x}}$ is NOT transcendental
+            because it is equivalent to $\sqrt{x}$
+        \end{itemize}
+    \pause
+    \item Break the function into transcendental ``levels''
+    \item For example, for $e^{\tan{x^2}}$, we have $e^{\tan{x^2}}$,
+    then $\tan{x^2}$, then $x$.
+    \pause
+    \item Integrate starting at the top until out integral only has
+    lower levels
+    \item The recursively integrate
+    \item When we reach $x$ (always the lowest ``level''), we are done
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{The Transcendental Algorithm}
+    \begin{itemize}
+        \item Four steps, each which breaks up the integral into a
+        smaller integral and part of the solution
+        \begin{equation}
+        \label{smaller integral}
+        \int{f(x)\,dx} = p(x) + \int{q(x)\,dx}
+        \end{equation}
+        \pause
+        \item The steps are 
+            \begin{enumerate}
+                \item Hermite Reduction
+                \item Polnomial reduction
+                \item Residue Criterion: Computes the logarithmic part
+                (the $c_i$ and $u_i$)
+                \item We then get a ``polynomial'' in our top level
+                function
+            \end{enumerate}
+            \pause
+            \begin{itemize}
+                \item Each case reduces to a subproblem
+                    \begin{itemize}
+                        \item Exponential Case $\longrightarrow$ Risch
+                        Differential Equation
+                        \item Primitive (Logarithmic) Case
+                        $\longrightarrow$ Parametric Risch Differential
+                        Equation
+                        \item Tangent Case $\longrightarrow$ Coupled
+                        Risch Differential Equation
+                    \end{itemize}
+            \end{itemize}
+    \pause
+    \item Steps 3 and 4 potentially prove that the integral is nonelementary
+    \end{itemize}
+\end{frame}
+
+\subsubsection{Example: Risch Differential Equation}
+
+\begin{frame}
+    \frametitle{Example: Risch Differential Equation}
+    \pause
+    \begin{equation}
+    \label{exponential integral}
+    \int{p(x)e^{q(x)}\,dx}
+    \end{equation}
+    is equivalent to 
+    \begin{equation}
+    \label{rischde}
+    y' + fy = g
+    \end{equation}
+    having a solution $y$, where $f$ and $g$ come directly from $p(x)$
+    and $q(x)$
+    \pause
+    \begin{itemize}
+        \item Liouville's Theorem implies $y$ must have only ``parts''
+        from $f$ and $g$.
+        \pause
+        \item Complex, case-by-case algorithm to solve \ref{rischde}
+        \pause
+        \item If it finds that no solution can exist, then it has shown
+        that \ref{exponential integral} is not elementary.
+    \end{itemize}
 \end{frame}
 
 \section{Implementation in SymPy}
 
 \begin{frame}
+    \frametitle{Implementation in SymPy}
     \begin{figure}
     \subfigure{\includegraphics[width=.32\textwidth]{python-logo-master-v3-TM.png}}
     \subfigure{\includegraphics[width=.32\textwidth]{sympy.png}}
@@ -163,6 +250,17 @@ Integration and Implementation in the SymPy Computer Algebra System}
     program.
 \end{frame}
 
+\begin{frame}
+    \frametitle{Implementation in SymPy}
+    \begin{figure}[t!]
+        \subfigure{\raisebox{1in}{\includegraphics[width=.481\textwidth]{algorithmfull}}}
+        \subfigure{\includegraphics[width=.5\textwidth]{polyrischdenocancel2full.pdf}}
+    \end{figure}
+%    \begin{figure}
+%        \subfigure{\input{../report/algorithm}}
+%        \subfigure{\input{../report/polyrischdenocancel2}}
+%    \end{figure}
+\end{frame}
 \section{Future}
 
 \begin{frame}
