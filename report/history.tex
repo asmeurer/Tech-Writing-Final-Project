@@ -1,45 +1,44 @@
-Before Risch discovered the \gls{integration} algorithm
-\cite{risch1969problem}, the \glspl{cas} that existed used heuristic
-methods to integrate common functions. Moses in his 1971 ``Stormy
-Decade'' paper~\cite{moses1971symbolic} details the methods that his SIN
-\gls{cas} used for integration. SIN was written before the Risch
-algorithm was discovered, so this gives an insight to what the
-integration algorithms in \glspl{cas} looked like before that, when they
-only used heuristic methods.  The method used is a three step method:
-first try to apply the simplest possible heuristic, which basically
-involves trying to pattern match $\int{c\ \mathrm{op}(u(x))u'(x)\,dx}$.
-When an \gls{integrand} has this form, the integral can be reduced to
-simply $c\int{\mathrm{op}(z)\,dz}$, by making the substitution
-$z=u'(x)\,dx$.  If $\mathrm{op}$ has a known antiderivative, then the
-entire integral can be computed.  This is essentially the
-``$u$-substitution'' heuristic method from calculus.  If this method
-fails, which it will for all but the most simple integrals, the second
-stage is applied.  At this stage, the \gls{integrand} is matched against
-eleven more complicated but simple heuristics for common integrals of
-exponentials, logarithms, trigonometric, and \gls{algebraic} functions.  For
-example, some of the methods are \gls{integration} of exponentials via the
-substitution $y=c^x$, integration of expressions with $\sqrt{ax^2 + bx +
-c}$ via an arctrigonometric substitution, and the specific
-sub-algorithm of the Risch Algorithm that deals with integrals of the
-form
+Before Risch discovered the \gls{integration} algorithm, the \glspl{cas}
+that existed used heuristic methods to integrate common functions.
+Moses, in his 1971 ``Stormy Decade'' paper~\cite{moses1971symbolic},
+details the methods that his SIN \gls{cas} used for integration. SIN was
+written before the Risch Algorithm was discovered, so this gives an
+insight to what the integration algorithms in \glspl{cas} looked like
+before that, when they only used heuristic methods.  The method used is
+a three step method: first try to apply the simplest possible heuristic,
+which basically involves trying to pattern match $\int{c\
+\mathrm{op}(u(x))u'(x)\,dx}$. When an \gls{integrand} has this form, the
+integral can be reduced to simply $c\int{\mathrm{op}(z)\,dz}$, by making
+the substitution $z=u'(x)\,dx$.  If $\mathrm{op}$ has a known
+antiderivative, then the entire integral can be computed.  This is
+essentially the ``$u$-substitution'' heuristic method from calculus.  If
+this method fails, which it will for all but the most simple integrals,
+the second stage is applied.  At this stage, the \gls{integrand} is
+matched against eleven more complicated but simple heuristics for common
+integrals of exponentials, logarithms, trigonometric, and
+\gls{algebraic} functions.  For example, some of the methods are
+\gls{integration} of exponentials via the substitution $y=c^x$,
+integration of expressions with $\sqrt{ax^2 + bx + c}$ via an
+arctrigonometric substitution, and the specific sub-algorithm of the
+Risch Algorithm that deals with integrals of the form
 \begin{equation}
 \label{SIN exponential form}
 \int{p(x)e^{q(x)}\,dx},
 \end{equation}
-where $p(x)$ and $q(x)$ are
-\glspl{rational function} in $x$ (this is the only part of the SIN
-algorithm that can determine that an integral is not \gls{elementary}).
-The third stage applies more advanced methods such as partial fractions
-or further parts of the Risch Algorithm.  Each stage of the procedure is
-easier to compute than the those that come after it, but is less likely
-to produce an answer than those that come after it.
+where $p(x)$ and $q(x)$ are \glspl{rational function} in $x$ (this is
+the only part of the SIN algorithm that can determine that an integral
+is not \gls{elementary}). The third stage applies more advanced methods
+such as partial fractions or further parts of the Risch Algorithm.  Each
+stage of the procedure is easier to compute, but is less likely to
+produce an answer than those that come after it.
 
 The original algorithm by Risch, while a decision procedure, was only an
 algorithm in the technical sense, as many parts were far too complicated
-to ever be implemented in a \gls{cas}.  It wasn't until Davenport
-\cite{davenport1984integration}, Trager~\cite{trager1984integration},
-Bronstein~\cite{bronstein2005symbolic}, and others came along that
-these parts were simplified to the point that they could actually be
+to ever be implemented in a \gls{cas}.  It wasn't until
+Davenport~\cite{davenport1984integration},
+Trager~\cite{trager1984integration},
+Bronstein~\cite{bronstein2005symbolic}, and others came along that these
+parts were simplified to the point that they could actually be
 implemented.  In particular, the \gls{algebraic} part relied on some
 complicated algebraic curve theory, which was simplified to some degree
 by Davenport and also Trager.  However, as the focus of this paper is
