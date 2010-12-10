@@ -34,7 +34,11 @@ integral exists, they simply return the integral unevaluated, which is
 the same thing that it does when it fails for an integral that does have
 an closed form solution, so that there is no way to know if it failed
 because an answer doesn't exist or because the heuristic could not find
-one.
+one.  Because the Risch Algorithm is a decision procedure,
+\rischintegrate{}, when it is completed, should be able to take any
+\gls{elementary} \gls{transcendental} function and either produce an
+\gls{elementary} antiderivative for it, or else prove that no such
+antiderivative exists.  
 
 Because my implementation of the Risch Algorithm is not complete, and
 because I wanted to be able to compare it to the old implementation, I
@@ -45,7 +49,7 @@ could the algorithm prove that a nonelementary integral doesn't exist
 when that was the case, but it was also much faster, and could handle a
 much larger set of functions (all \gls{transcendental} \gls{elementary}
 functions, instead of just functions that are simple enough to pass
-through the heuristic).
+through the heuristic).  
 
 \subsection{Sample Session} 
 \label{sample}
@@ -135,10 +139,10 @@ $e^{-x\ln{x}}$, respectively.  These forms are mathematically equivalent.
 
 Here is an example of the sort of thing discussed in Section
 \ref{history}.  The old \texttt{integrate()} cannot handle this
-integral, so it returns an unevaluated integral\footnote{Unlike with
-\rischintegrate{}, when \textttt{integrate()} returns an unevalauted
+integral, so it returns an unevaluated integral.\footnote{Unlike with
+\rischintegrate{}, when \texttt{integrate()} returns an unevalauted
 integral, it does not necessarily mean that the integral is
-nonelementary.}.  \rischintegrate{} is able to handle the integral just
+nonelementary.}  \rischintegrate{}, on the other hand, is able to handle the integral just
 fine.
 
 \begin{flushleft}
