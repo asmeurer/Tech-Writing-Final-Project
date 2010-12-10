@@ -1,1 +1,30 @@
-\emph{The conclusion.}
+The problem of symbolically integrating \gls{elementary} functions has
+been completely solved since the 1970's in the form of the Risch
+Algorithm, but due to its complexity few \glspl{cas} other than the
+large ones (such as Maple and Mathematica) implement it.  Of the open
+source \glspl{cas}, Axiom is the only one aside from SymPy that
+implements the algorithm.  Therefore, it is of great benefit to have an
+implementation of the algorithm.  The full algorithm is a great
+improvement over the heuristic methods that most \glspl{cas} apply. 
+First, it can actually be faster.  The reason for this is that the Risch
+Algorithm integrates a function directly, whereas heuristic methods
+attempt to guess what the solution looks like or what type it is.  Also,
+the \rischintegrate{} implementation in SymPy is faster because it uses
+the faster polys module, whereas the older \texttt{integrate()} uses
+older, slower parts of the system.
+
+Second, the Risch Algorithm is a decision procedure.  This has two
+benefits.  First, it means that the algorithm can always produce a
+solution, no matter how complex the \gls{integrand} is.  Second, it
+means that it can prove that no \gls{elementary} solution exists
+whenever this is the case. This has both theoretical and practical uses.
+ If an integral can be shown not to have a closed form solution, then it
+will be more beneficial to use numerical techniques to calculate the
+values of that function.  Also, it is very interesting from a
+theoretical stand point that not only can this problem be solved
+completely, but it can be done so programmatically by a computer.
+
+The implementation of the \gls{transcendental} part of the algorithm in
+SymPy, though not yet entirely complete, has been very successful. 
+And after it is completed, there are plenty of avenues to continue work on
+symbolic integration in SymPy.
