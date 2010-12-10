@@ -1,0 +1,21 @@
+﻿\documentclass{article}
+\usepackage{fancyvrb}
+\usepackage[usenames]{color}
+\usepackage{xltxtra}
+\usepackage{xunicode}
+\usepackage{verbatim}
+\usepackage{fontspec}
+\usepackage[margin=0in, paperwidth=6in, paperheight=.52in]{geometry}
+% 6 in width for 80 characters
+% 1.03 in = 6 lines
+% Add an extra line at the bottom for spacing
+\setmonofont{Menlo}
+\tracingonline=1
+\begin{document}
+
+\normalsize
+\begin{Verbatim}
+In [15]: %timeit integrate(x**20*exp(x), x)
+1 loops, best of 3: 31.5 s per loop
+\end{Verbatim}
+\end{document}

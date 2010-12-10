@@ -154,3 +154,29 @@ just fine.
 \includegraphics[width=1\textwidth]{sample12.pdf}
 \includegraphics[width=1\textwidth]{sample13.pdf}
 \end{flushleft}
+
+Finally, we look at an example that demonstrates the speed differences
+between \rischintegrate{} and \texttt{integrate()}.  The following
+example suggests that \rischintegrate{} is not only several orders of
+magnitude faster than \texttt{integrate()}, but it is also asymtotically
+faster.  This means that if you increase the size of the problem, the
+corresponding increase in the time it takes to solve the problem is less
+for \rischintegrate{} than for \texttt{integrate()}.  In this case, it
+appears (based on further numbers than those given below) that for the
+the time to compute $\int{x^ne^x\,dx}$ \rischintegrate{} takes $O(n^2)$
+time to compute the answer (roughly quadratic with $n$), where as
+\texttt{integrate()} takes $O(n^3)$ time to compute the answer (roughly
+cubic).  Note that $\int{x^ne^x\,dx}$ has $n + 1$ terms, so it must take
+at least $O(n)$ time to compute.  This means that even if
+\texttt{integrate()} were not slow for small $n$, it would become
+unreasonably slow for $n$ that is only somewhat larger.  Even as it is,
+\texttt{integrate()} would take several minutes to compute
+$\int{x^100e^x\,dx}$, whereas \rischintegrate{} can compute it in less
+than half a second.
+
+\begin{flushleft}
+\includegraphics[width=1\textwidth]{sample14.pdf}
+\includegraphics[width=1\textwidth]{sample15.pdf}
+\includegraphics[width=1\textwidth]{sample16.pdf}
+\includegraphics[width=1\textwidth]{sample17.pdf}
+\end{flushleft}
