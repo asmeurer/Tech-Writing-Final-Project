@@ -1,6 +1,6 @@
 Over the summer of 2010, as part of the Google Summer of Code
-program\footnote{ See \url{http://code.google.com/soc/} for more
-information about the program.}, I implemented the algorithms described
+program,\footnote{ See \url{http://code.google.com/soc/} for more
+information about the program.} I implemented the algorithms described
 in Bronstein's book~\cite{bronstein2005symbolic} in the SymPy \gls{cas}.
 As was noted in Section \ref{description}, the algorithm is very
 complex. Bronstein's book only describes the \gls{transcendental} part
@@ -16,9 +16,9 @@ manipulation algorithms.  Fortunately, SymPy has an excellent polynomial
 manipulation module, which was written by Mateusz Paprocki, who was also
 my mentor for the Google Summer of Code program.  Therefore, I was able
 to implement the algorithm mostly without having to deal with details on
-lower levels, though I did have to learn how to use the polys module, as
-it is called, pretty well, and there were a few cases where I had to fix
-a few bugs in it.
+lower levels of the system, though I did have to learn how to use the
+polys module, as it is called, pretty well, and there were a few cases
+where I had to fix some bugs in it.
 
 Before my project, SymPy had a function called \texttt{integrate()} that
 performed symbolic integration.  However, this function used a
@@ -30,12 +30,12 @@ functions, but it was slow, and often failed to produce a result when
 one existed.  It also had a tendency to hang on hard integrals, forcing
 the user to interrupt the execution of the function.  Also, none of
 these heuristics have the ability to prove that an \gls{elementary}
-integral exists, they simply return the integral unevaluated, which is
+integral exists; they simply return the integral unevaluated, which is
 the same thing that it does when it fails for an integral that does have
-an closed form solution, so that there is no way to know if it failed
-because an answer doesn't exist or because the heuristic could not find
-one.  Because the Risch Algorithm is a decision procedure,
-\rischintegrate{}, when it is completed, should be able to take any
+an closed form solution. Therefore, there  would be no way to know if it
+failed because an answer doesn't exist or because the heuristic could
+not find one.  Because the Risch Algorithm is a decision procedure,
+my implementation of it, when it is completed, should be able to take any
 \gls{elementary} \gls{transcendental} function and either produce an
 \gls{elementary} antiderivative for it, or else prove that no such
 antiderivative exists.  
@@ -43,7 +43,7 @@ antiderivative exists.
 Because my implementation of the Risch Algorithm is not complete, and
 because I wanted to be able to compare it to the old implementation, I
 did not replace the code in \texttt{integrate()}.  Rather, I created a
-new function, \rischintegrate{}, which acts as a front end to the Risch
+new function, \rischintegrate{}, which acts as a front end to my Risch
 Algorithm implementation.  The result was very succesful.  Not only
 could the algorithm prove that a nonelementary integral doesn't exist
 when that was the case, but it was also much faster, and could handle a
@@ -51,8 +51,8 @@ much larger set of functions (all \gls{transcendental} \gls{elementary}
 functions, instead of just functions that are simple enough to pass
 through the heuristic).  
 
-Because SymPy is entirely open source, the source code for all my work
-is licensed under the BSD license and can be downloaded at
+SymPy is entirely open source, so the source code for all my work
+is licensed under the BSD license and can be downloaded for free at
 \url{http://github.com/asmeurer/sympy/tree/integration3}.
 
 \subsection{Sample Session} 
