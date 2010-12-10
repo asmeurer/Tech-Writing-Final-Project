@@ -148,13 +148,13 @@ Integration and Implementation in the SymPy Computer Algebra System}
     \end{itemize}
 \end{frame}
 
-\subsection{The Transcendental Algorithm}
+\subsection{The Transcendental Risch Algorithm}
 
 \begin{frame}
-    \frametitle{The Transcendental Algorithm}
+    \frametitle{The Transcendental Risch Algorithm}
     \begin{itemize}
         \item First we must parse the expression
-        \item Make sure it is purley transcendental
+        \item Make sure it is purely transcendental
         \begin{itemize}
             \item e.g., $e^{\frac{1}{2}\ln{x}}$ is NOT transcendental
             because it is equivalent to $\sqrt{x}$
@@ -172,7 +172,7 @@ Integration and Implementation in the SymPy Computer Algebra System}
 \end{frame}
 
 \begin{frame}
-    \frametitle{The Transcendental Algorithm}
+    \frametitle{The Transcendental Risch Algorithm}
     \begin{itemize}
         \item Four steps, each which breaks up the integral into a
         smaller integral and part of the solution
@@ -184,7 +184,7 @@ Integration and Implementation in the SymPy Computer Algebra System}
         \item The steps are 
             \begin{enumerate}
                 \item Hermite Reduction
-                \item Polnomial reduction
+                \item Polynomial Reduction
                 \item Residue Criterion: Computes the logarithmic part
                 (the $c_i$ and $u_i$)
                 \item We then get a ``polynomial'' in our top level
@@ -247,9 +247,19 @@ Integration and Implementation in the SymPy Computer Algebra System}
    \end{figure}
     Over the summer of 2010, I worked for the Python Software
     Organization with the SymPy project under the Google Summer of Code
-    program.
+    program to implement the transcendental Risch Algorithm in SymPy.
 \end{frame}
 
+\begin{frame}
+    \frametitle{Implementation in SymPy}
+    \begin{itemize}
+        \item End result: \rischintegrate{} function
+        \pause
+        \item Orders of magnitude faster than old \texttt{integrate()} function
+        \item Able to solve much more
+        \item And it can prove that integrals are nonelementary!
+    \end{itemize}
+\end{frame}
 \begin{frame}
     \frametitle{Implementation in SymPy}
     \begin{figure}[t!]
@@ -261,12 +271,57 @@ Integration and Implementation in the SymPy Computer Algebra System}
 %        \subfigure{\input{../report/polyrischdenocancel2}}
 %    \end{figure}
 \end{frame}
-\section{Future}
 
 \begin{frame}
-
+    \frametitle{Implementation in SymPy}
+    \begin{figure}
+    \begin{flushleft}
+    \subfigure{\includegraphics[width=.7\textwidth]{../report/sample1.pdf}}
+    \subfigure{\includegraphics[width=.7\textwidth]{../report/sample2.pdf}}
+    \subfigure{\includegraphics[width=.7\textwidth]{../report/sample3.pdf}}
+    \subfigure{\includegraphics[width=.7\textwidth]{../report/sample4.pdf}}
+    \end{flushleft}
+    \end{figure}
 \end{frame}
 
+\begin{frame}
+    \frametitle{Implementation in SymPy}
+    \begin{figure}
+    \begin{flushleft}
+    \subfigure{\includegraphics[width=.7\textwidth]{../report/sample5.pdf}}
+    \subfigure{\includegraphics[width=.7\textwidth]{../report/sample7.pdf}}
+    \subfigure{\includegraphics[width=.7\textwidth]{../report/sample10.pdf}}
+    \subfigure{\includegraphics[width=.7\textwidth]{../report/sample11.pdf}}
+    \end{flushleft}
+    \end{figure}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Implementation in SymPy}
+    (\texttt{integrate()} is the old function and \rischintegrate{} is
+    the new function)
+    \begin{figure}
+    \begin{flushleft}
+    \subfigure{\includegraphics[width=.7\textwidth]{../report/sample14.pdf}}
+    \subfigure{\includegraphics[width=.7\textwidth]{../report/sample15.pdf}}
+    \subfigure{\includegraphics[width=.7\textwidth]{../report/sample16.pdf}}
+    \subfigure{\includegraphics[width=.7\textwidth]{../report/sample17.pdf}}
+    \end{flushleft}
+    \end{figure}
+    \pause
+    {\bf The new implementation is both orders of magnitude faster, and
+    asymptotically faster!}
+\end{frame}
+
+\begin{frame}
+    \begin{itemize}
+        \item All of SymPy (including my work) is open source (BSD license)
+        \item You can download SymPy at \url{www.sympy.org}
+        \item My development branch is at
+        \url{www.github.com/asmeurer/sympy/tree/integration3} (it
+        isn't merged into the main repo yet)
+    \end{itemize}
+\end{frame}
 
 \section{Questions}
 
