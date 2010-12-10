@@ -94,7 +94,7 @@ best way to do this automatically so that it produces the best result
 without user intervention.  
 
 \item Remember that \texttt{integrate()} is the old \gls{integration}
-engine and \rischintegrate{} is the new engine.  I have run them both in a
+engine and that \rischintegrate{} is the new engine.  I have run them both in a
 few examples to compare results or timeings.  
 
 \item If \rischintegrate{} returns an unevaluated integral, this means
@@ -138,12 +138,13 @@ $e^{-x\ln{x}}$, respectively.  These forms are mathematically equivalent.
 \end{flushleft}
 
 Here is an example of the sort of thing discussed in Section
-\ref{history}.  The old \texttt{integrate()} cannot handle this
-integral, so it returns an unevaluated integral.\footnote{Unlike with
-\rischintegrate{}, when \texttt{integrate()} returns an unevalauted
-integral, it does not necessarily mean that the integral is
-nonelementary.}  \rischintegrate{}, on the other hand, is able to handle the integral just
-fine.
+\ref{history}.  The old \texttt{integrate()} cannot handle this integral
+(despite its simplicity), so it returns an unevaluated
+integral.\footnote{Unlike with \rischintegrate{}, when
+\texttt{integrate()} returns an unevalauted integral, it does not
+necessarily mean that the integral is nonelementary.} 
+\rischintegrate{}, on the other hand, is able to handle the integral
+just fine.
 
 \begin{flushleft}
 \includegraphics[width=1\textwidth]{sample11.pdf}
