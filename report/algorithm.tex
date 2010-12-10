@@ -1,0 +1,40 @@
+\begin{algorithm}[H]
+    \SetCommentSty{textrm}
+    \SetFillComment
+    \dontprintsemicolon
+%    \TitleOfAlgo{{\bf PolyRischDENoCancel2}($b$, $c$, $D$, $n$)}
+%    \SetAlgorithmName{{\bf PolyRischDENoCancel2}($b$, $c$, $D$, $n$)}
+    {\bf PolyRischDENoCancel2}($b$, $c$, $D$, $n$)
+    \tcc*[f]{Poly Risch d.e. -- no cancellation}\;
+    \BlankLine
+    \Indp
+%    \tcc*[f]{Poly Risch d.e. -- no cancellation}}\;
+    \BlankLine
+    \tcc*[f]{Given a derivation $D$ on $k[t]$, $n$ either an integer or
+    $+\infty$, and $b, c\in k[t]$ with $\mathrm{deg}(b)< \delta(t) - 1$
+    and either $D = d/dt$ or $\delta(t) \geq 2$, return either ``no
+    solution'', in which case the equation $Dq + bq = c$ has no solution
+    of degree at most $n$ in $k[t]$, or a solution $q \in k[t]$ of this
+    equation with $\mathrm{deg}(q) \leq n$, or the tuple $(h, b_0, c_0)$
+    such that $h \in k[t]$, $b_0,c_0\in k[t]$, and for any solution
+    $q\in k[t]$ of degree at most $n$ of $Dq + bq = c$, $y = q - h$ is a
+    solution in $k$ of $Dy + b_0y=c_0$.}\;
+    \BlankLine
+    $q \leftarrow 0$\;
+    \While{$c\neq 0$}{
+        \lIf{$n=0$}{$m\leftarrow 0$} \lElse{$m\leftarrow \mathrm{deg}(c)
+        = \delta(t) + 1$}\;
+        \lIf{$n < 0$ or $m < 0$ or $m > n$}{\Return ``no solution''}\;
+        \lIf{$m > 0$}{$p\leftarrow (\mathrm{lc}(c)/(m\lambda(t)))t^m$}\;
+        \Else(\tcc*[f]{$m =  0$}){
+            \lIf{$\mathrm{deg}(b) \neq \mathrm{deg}(c)$}{\Return ``no
+            solution''}\;
+            \lIf{$\mathrm{deg}(b) = 0$}{\Return $(q, c, b)$}\;
+            $p \leftarrow \mathrm{lc}(c)/\mathrm{lc}(b)$\;
+        }
+        $q \leftarrow q + p$\;
+        $n \leftarrow m - 1$\;
+        $c \leftarrow c - Dp - bp$\;
+    }
+    \Return $q$
+\end{algorithm}
