@@ -5,17 +5,21 @@
 \usepackage{xunicode}
 \usepackage{verbatim}
 \usepackage{fontspec}
-\usepackage[margin=0in, paperwidth=6in, paperheight=.52in]{geometry}
+\usepackage[margin=0in, paperwidth=6in, paperheight=1.2in]{geometry}
 % 6 in width for 80 characters
 % 1.03 in = 6 lines
 % Add an extra line at the bottom for spacing
 \setmonofont{Menlo}
-\tracingonline=1
+\tracingonline=1 % Show missing characters in the command line
 \begin{document}
 
 \normalsize
 \begin{Verbatim}
-In [1]: f1 = (1 + exp(x**2))*(1 - x - 4*x**2*exp(x**2)*log(x) - 
-   ...: x*exp(x**2) + 4*x**3*exp(x**2) + exp(x**2))/(x*(x - log(x))**2)
+In [9]: risch_integrate(exp(-x*log(x)), x)
+Out[9]: 
+⌠              
+⎮  -x⋅log(x)   
+⎮ e          dx
+⌡              
 \end{Verbatim}
 \end{document}

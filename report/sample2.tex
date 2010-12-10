@@ -1,0 +1,27 @@
+﻿\documentclass{article}
+\usepackage{fancyvrb}
+\usepackage[usenames]{color}
+\usepackage{xltxtra}
+\usepackage{xunicode}
+\usepackage{verbatim}
+\usepackage{fontspec}
+\usepackage[margin=0in, paperwidth=6in, paperheight=1.55in]{geometry}
+% 6 in width for 80 characters
+% 1.03 in = 6 lines
+% Add an extra line at the bottom for spacing
+\setmonofont{Menlo}
+\tracingonline=1
+\begin{document}
+
+\normalsize
+\begin{Verbatim}
+In [2]: f1
+Out[2]: 
+⎛ ⎛ 2⎞    ⎞ ⎛      ⎛ 2⎞         ⎛ 2⎞             ⎛ 2⎞        ⎛ 2⎞    ⎞
+⎜ ⎝x ⎠    ⎟ ⎜   3  ⎝x ⎠      2  ⎝x ⎠             ⎝x ⎠        ⎝x ⎠    ⎟
+⎝e     + 1⎠⋅⎝4⋅x ⋅e     - 4⋅x ⋅e    ⋅log(x) - x⋅e     - x + e     + 1⎠
+──────────────────────────────────────────────────────────────────────
+                                         2                            
+                           x⋅(x - log(x))                             
+\end{Verbatim}
+\end{document}
