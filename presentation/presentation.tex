@@ -166,7 +166,7 @@ Integration and Implementation in the SymPy Computer Algebra System}
     \pause
     \item Integrate starting at the top until out integral only has
     lower levels
-    \item The recursively integrate
+    \item Then recursively integrate
     \item When we reach $x$ (always the lowest ``level''), we are done
     \end{itemize}
 \end{frame}
@@ -231,7 +231,7 @@ Integration and Implementation in the SymPy Computer Algebra System}
         \pause
         \item Complex, case-by-case algorithm to solve \ref{rischde}
         \pause
-        \item If it finds that no solution can exist, then it has shown
+        \item If it finds that no solution can not exist, then it has shown
         that \ref{exponential integral} is not elementary.
     \end{itemize}
 \end{frame}
@@ -278,6 +278,7 @@ Integration and Implementation in the SymPy Computer Algebra System}
     \begin{flushleft}
     \subfigure{\includegraphics[width=.7\textwidth]{../report/sample1.pdf}}
     \subfigure{\includegraphics[width=.7\textwidth]{../report/sample2.pdf}}
+    \pause
     \subfigure{\includegraphics[width=.7\textwidth]{../report/sample3.pdf}}
     \subfigure{\includegraphics[width=.7\textwidth]{../report/sample4.pdf}}
     \end{flushleft}
@@ -298,8 +299,7 @@ Integration and Implementation in the SymPy Computer Algebra System}
 
 \begin{frame}
     \frametitle{Implementation in SymPy}
-    (\texttt{integrate()} is the old function and \rischintegrate{} is
-    the new function)
+    Let's look at how long it takes to compute $\int{x^{10}e^x\,dx}$ and $\int{x^{20}e^x\,dx}$.
     \begin{figure}
     \begin{flushleft}
     \subfigure{\includegraphics[width=.7\textwidth]{../report/sample14.pdf}}
@@ -308,6 +308,8 @@ Integration and Implementation in the SymPy Computer Algebra System}
     \subfigure{\includegraphics[width=.7\textwidth]{../report/sample17.pdf}}
     \end{flushleft}
     \end{figure}
+    (\texttt{integrate()} is the old function and \rischintegrate{} is
+    the new function)\\
     \pause
     {\bf The new implementation is both orders of magnitude faster, and
     asymptotically faster!}
