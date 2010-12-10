@@ -18,8 +18,8 @@ posses, so this would have to come after I have taken some more classes
 in algebraic curve theory, probably at a graduate school (there are no
 courses on this subject at New Mexico Tech).  Unlike with Bronstein's
 book, there are no definitive sources for the non-\gls{transcendental}
-parts of the algorithm.  Bronstein unfortunately died before being able
-to write further volumes.  My references would have to therefore come
+parts of the algorithm---Bronstein unfortunately died before being able
+to write further volumes.  My references would have to come
 from Trager's PhD thesis~\cite{trager1984integration} and Davenport's
 book~\cite{davenport1984integration} on the algebraic part of the
 algorithm, and from the journal articles.  Kauers~\cite{kauers2008integration} also suggests a heuristic method for
@@ -31,7 +31,7 @@ Aside from the main Risch Algorithm, which deals with integrating
 nonelementary functions, both for \gls{elementary} functions that do not
 have \gls{elementary} antiderivatives and for integrals of nonelementary
 functions.  The journal literature is full of methods for extending the
-Risch Algorithm to these functions, for example Adamchik's paper~\cite{adamchik1990hypergeometric} on integrating hypergeometric type
+Risch Algorithm to these functions, for example, Adamchik's paper~\cite{adamchik1990hypergeometric} on integrating hypergeometric type
 functions.
 
 Another avenue would be to look at definite \gls{integration}.  The
@@ -42,12 +42,12 @@ the area under the curve.  The Fundamental Theorem of Calculus gives a
 simple formula to calculate a definite integral given an indefinite
 integral.  However, some functions that do not have \gls{elementary}
 indefinite integrals do have closed-form definite integrals over some
-intervals.  For example, the \gls{error function}, when evaluated from
-$-\infty$ to $\infty$, i.e.,
+intervals.  A common example is \gls{error function} when evaluated from
+$-\infty$ to $\infty$, since
 $\frac{2}{\sqrt{\pi}}\int_{-\infty}^\infty{e^{-x^2}\,dx}=1$.
 
 There does exist an algorithm to compute definite integrals.  It is not
-a decision procedure like the Risch Algorithm because it relies on the
+a decision procedure like the Risch Algorithm, because it relies on the
 ability to convert what is known as a Meijer G-Function into a
 closed-form.  Roach's work on the method~\cite{roach1997meijerg} would
 be a primary resource.  
