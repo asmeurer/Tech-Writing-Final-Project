@@ -60,10 +60,10 @@ is licensed under the BSD license and can be downloaded at
 
 Below is an annotated sample session demonstrating \rischintegrate{} in action.  A few notes:
 \begin{itemize}
-\item SymPy runs in a Python intrepeter from the command line.
-iSymPy is a script that automatically imports SymPy functions and
-creates common variable names.  The below is running in \texttt{isympy
--o lex} in the iPython Python intrepeter.
+\item SymPy runs in a Python interpreter from the command line. iSymPy is
+a script that automatically imports SymPy functions and creates common
+variable names.  The below is running in \texttt{isympy} in the iPython
+Python intrepeter.
 
 \item SymPy uses unicode characters to pretty-print the equations. 
 What is shown below is exactly what you would see in a actual iSymPy
@@ -72,7 +72,7 @@ session.
 \item \texttt{\%timeit} is an iPython command that executes the command
 multiple times and reports on the running time of the function. I have
 placed these in for a few of the integrals to demonstrate the speed of
-the algorithm.  All timeings come from a 2008 MacBook Pro with a 2.5 GHz
+the algorithm.  All timings come from a 2008 MacBook Pro with a 2.5 GHz
 Intel Core 2 Duo processor and 4 GB of RAM.  The session is running in
 Python 2.7.1, with the latest version of my \texttt{integration3}
 development branch as the time of this writing.  
@@ -83,7 +83,7 @@ so that it can be more compact or so that it is in the same form as
 given before.
 
 \item As with most \glspl{cas} integrators, the arbitrary constant, or
-constant of integration, is ommited.  
+constant of integration, is omitted.  
 
 \item The syntax for \rischintegrate{} is \texttt{risch\_integrate(f, x)},
 where \texttt{f} is the expression to be integrated and \texttt{x} is
@@ -99,7 +99,7 @@ without user intervention.
 
 \item Remember that \texttt{integrate()} is the old \gls{integration}
 engine and that \rischintegrate{} is the new engine.  I have run them both in a
-few examples to compare results or timeings.  
+few examples to compare results or timings.  
 
 \item If \rischintegrate{} returns an unevaluated integral, this means
 that it has proven that the integral is not \gls{elementary}.  If it
@@ -109,7 +109,7 @@ because the equation is not \gls{elementary} purely
 exception.  None of the examples below raise this exception.
 
 \item As with many \glspl{cas}, SymPy uses $\log$ instead of $\ln$. 
-In SymPy, 1$\log$ means the natural logarithm, or log base $e$.
+In SymPy, $\log$ means the natural logarithm, or log base $e$.
 
 \item As is also common convention with \glspl{cas}, \texttt{exp(x)} is
 the syntax for $e^x$.
@@ -132,7 +132,7 @@ First, let us revisit Equation \ref{hard-integral}.  As we can see,
 
 Next, let us look at those equations from Appendix
 \ref{nonelementary_examples_appendix} that do not have
-trigonmetric parts.  \rischintegrate{} returns an unevaluated integral for
+trigonometric parts.  \rischintegrate{} returns an unevaluated integral for
 each, meaning that it can prove that each is nonelementary.  Due to a
 current limitation in the algorithm, we must first rewrite Equations
 \ref{x_to_the_x} and \ref{x_to_the_neg_x} as $e^{x\ln{x}}$ and
@@ -152,7 +152,7 @@ Here is an example of the sort of thing discussed in Section
 \ref{history}.  The old \texttt{integrate()} cannot handle this integral
 (despite its simplicity), so it returns an unevaluated
 integral.\footnote{Unlike with \rischintegrate{}, when
-\texttt{integrate()} returns an unevalauted integral, it does not
+\texttt{integrate()} returns an unevaluated integral, it does not
 necessarily mean that the integral is nonelementary.} 
 \rischintegrate{}, on the other hand, is able to handle the integral
 just fine.
@@ -165,7 +165,7 @@ just fine.
 Finally, we look at an example that demonstrates the speed differences
 between \rischintegrate{} and \texttt{integrate()}.  The following
 example suggests that \rischintegrate{} is not only several orders of
-magnitude faster than \texttt{integrate()}, but it is also asymtotically
+magnitude faster than \texttt{integrate()}, but it is also asymptotically
 faster.  This means that if you increase the size of the problem, the
 corresponding increase in the time it takes to solve the problem is less
 for \rischintegrate{} than for \texttt{integrate()}.  In this case, it
