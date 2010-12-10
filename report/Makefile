@@ -37,7 +37,7 @@ python:
 	pygmentize -f latex polyrischdenocancel2.py >| polyrischdenocancel2.tex
 
 clean:
-	-rm -f *.blg *.lof *.log *.lot *.pdf *.toc *.bbl *.aux *glg *.glo *.gls *.ist *.acn *.acr *.alg
+	-rm -f *.blg *.lof *.log *.lot *.pdf *.toc *.bbl *.aux *glg *.glo *.gls *.ist *.acn *.acr *.alg polyrischdenocancel2.tex
 
 samples:
 	xelatex sample1.tex
