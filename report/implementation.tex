@@ -109,6 +109,9 @@ In SymPy, 1$\log$ means the natural logarithm, or log base $e$.
 
 \item As is also common convention with \glspl{cas}, \texttt{exp(x)} is
 the syntax for $e^x$.
+
+\item \texttt{**} denotes exponentiation.  This is Python syntax.  For
+example, \texttt{x**2} represents $x^2$.
 \end{itemize}
 
 First, let us revisit Equation \ref{hard-integral}.  As we can see,
@@ -171,7 +174,7 @@ at least $O(n)$ time to compute.  This means that even if
 \texttt{integrate()} were not slow for small $n$, it would become
 unreasonably slow for $n$ that is only somewhat larger.  Even as it is,
 \texttt{integrate()} would take several minutes to compute
-$\int{x^100e^x\,dx}$, whereas \rischintegrate{} can compute it in less
+$\int{x^{100}e^x\,dx}$, whereas \rischintegrate{} can compute it in less
 than half a second.
 
 \begin{flushleft}
