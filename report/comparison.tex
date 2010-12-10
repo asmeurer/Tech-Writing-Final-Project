@@ -19,7 +19,7 @@ exactly from pseudocode into SymPy Python.  Therefore, any differences
 are the result of the implementation details of SymPy.  Aside from the
 syntax differences between the pseudocode and Python, there are very
 little such differences.  The main difference is that in SymPy we must
-use the \texttt{Poly} class to do polynomial manipulations.  For
+use the \texttt{Poly} class to do polynomial manipulations, so, for
 example, we have {\tt p = Poly(c.as\_poly(t).LC()/b.as\_poly(t).LC(),
 t)} instead of the $p \leftarrow \mathrm{lc}(c)/\mathrm{lc}(b)$ from the
 pseudocode.  Thus, this example serves to show some of the advantages of
@@ -27,4 +27,6 @@ using Python and SymPy to when working with an algorithm as complex as
 the Risch Algorithm.  Because the SymPy Python code is almost exactly
 the same as the pseudocode, it is just as easy to read and understand.
 This also makes much easier to maintain against the pseudocode, since
-any typo in the Python will be easy to spot.
+any typo in the Python will be easy to spot.  Finally, this and the fact
+that the code is open source means that it can be a resource to anyone
+who is trying to learn the Risch Algorithm.
