@@ -1,13 +1,6 @@
 \documentclass{beamer}
 
 \usetheme{Torino}
-\AtBeginSection[] 
-{ 
-  \begin{frame}<beamer> 
-    \frametitle{Agenda} 
-    \tableofcontents[currentsection] 
-  \end{frame} 
-}  % for recurrent Agenda slide
 \numberwithin{equation}{section} % Number equations with sections
 
 
@@ -41,10 +34,10 @@ non-el-e-men-tary}
 \input{../report/python_head}
 
 
-\title{Report on the Risch Algorithm for Symbolic
+\title{The Risch Algorithm for Symbolic
 Integration and Implementation in the SymPy Computer Algebra System}
 \author{Aaron Meurer}
-\date{December 10, 2010}
+\date{July 14, 2011}
 
 \begin{document}
 
@@ -52,194 +45,189 @@ Integration and Implementation in the SymPy Computer Algebra System}
     \titlepage
 \end{frame}
 
-\begin{frame} 
-    \frametitle{Agenda} 
-    \tableofcontents 
-\end{frame} 
-
-\section{Background}
-\subsection{Definitions}
-
-\begin{frame}
-    \frametitle{Definitions}
-    \begin{itemize}
-        \item {\bf Integration} 
-        \begin{itemize}
-            \item One of two fundamental operations in calculus (the other
-            being differentiation).
-            \item Informally, $\int_a^b{f(x)\,dx}$ represents the area under
-            the curve defined by the function $f(x)$ from the points $x=a$
-            to $x=b$.
-            \item The Fundamental Theorem of Calculus states that
-            integration and antidifferentiation, the inverse operation of
-            differentiation, are essentially the same thing.
-            \end{itemize}
-    \pause
-        \item {\bf Algebraic}
-        \begin{itemize}
-            \item A function is algebraic if it is the root of a polynomial
-            with coefficients that are rational functions with rational
-            number coefficients.  
-            \item For example, the function $\sqrt{x + 1}$ is algebraic
-            because it is the root of the polynomial $y^2 = x + 1$. 
-        \end{itemize}
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Definitions}
-    \begin{itemize}
-        \item {\bf Transcendental}
-        \begin{itemize}
-            \item A function is transcendental if it is not algebraic.  
-            \item A function is \textit{purely transcendental} if it does
-            not contain any algebraic components.  
-            \item $e^x$, $\ln{x}$, $\sin{x}$, $\cos{x}$, and $\tan{x}$ are
-            all transcendental.  
-            \item Roughly speaking, a function is transcendental if it
-            contains one of these, and it is purely transcendental if it
-            does not contain any radicals.
-            \begin{itemize}
-                \item $e^{x + 1}$ is purely transcendental
-                \item $\sqrt[3]{\ln{x}}$ is transcendental but not
-                purely transcendental
-                \item $\sqrt{x}$ is neither transcendental nor purely
-                transcendental (it is algebraic)
-            \end{itemize}
-        \end{itemize}
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Definitions}
-    \begin{itemize}
-        \item {\bf Elementary}
-        \begin{itemize}
-            \item Roughly speaking, a function is elementary if it can
-            be represented as a combination of exponentials, logarithms,
-            powers, and trigonometric functions by addition,
-            subtraction, multiplication, division, and composition. 
-            \item For example, $\frac{\sin{(x^2 +
-            1)}}{\sqrt[3]{\ln{x}}}$ is elementary, but
-            $\frac{2}{\sqrt{\pi}}\int{e^{-x^2}\,dx}$, the error
-            function, is not.
-        \end{itemize}
-    \end{itemize}
-\end{frame}
-
-\section{The Risch Algorithm}
-
-\subsection{Liouville's Theorem}
-
-\begin{frame}
-    \frametitle{Liouville's Theorem}
-    \begin{itemize}
-        \item If a function $f$ has an elementary integral, then the
-        integral can always be written in the form
-        \begin{equation}
-            \label{liouville's theorem}
-            \int{f} = v + \sum_{n=1}^m{c_i\ln{u_i}}
-        \end{equation}
-        where $v$ and the $u_i$ are ``parts'' of $f$, and the $c_i$ are
-        constants.
-        \pause
-        \item In other words, if we can show that $\int{f}$ does not
-        have this form, then we have shown that it is not elementary.
-    \end{itemize}
-\end{frame}
-
-\subsection{The Transcendental Risch Algorithm}
-
-\begin{frame}
-    \frametitle{The Transcendental Risch Algorithm}
-    \begin{itemize}
-        \item First we must parse the expression
-        \item Make sure it is purely transcendental
-        \begin{itemize}
-            \item e.g., $e^{\frac{1}{2}\ln{x}}$ is NOT transcendental
-            because it is equivalent to $\sqrt{x}$
-        \end{itemize}
-    \pause
-    \item Break the function into transcendental ``levels''
-    \item For example, for $e^{\tan{x^2}}$, we have $e^{\tan{x^2}}$,
-    then $\tan{x^2}$, then $x$.
-    \pause
-    \item Integrate starting at the top until out integral only has
-    lower levels
-    \item Then recursively integrate
-    \item When we reach $x$ (always the lowest ``level''), we are done
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{The Transcendental Risch Algorithm}
-    \begin{itemize}
-        \item Four steps, each which breaks up the integral into a
-        smaller integral and part of the solution
-        \begin{equation}
-        \label{smaller integral}
-        \int{f(x)\,dx} = p(x) + \int{q(x)\,dx}
-        \end{equation}
-        \pause
-        \item The steps are 
-            \begin{enumerate}
-                \item Hermite Reduction
-                \item Polynomial Reduction
-                \item Residue Criterion: Computes the logarithmic part
-                (the $c_i$ and $u_i$)
-                \item We then get a ``polynomial'' in our top level
-                function
-            \end{enumerate}
-            \pause
-            \begin{itemize}
-                \item Each case reduces to a subproblem
-                    \begin{itemize}
-                        \item Exponential Case $\longrightarrow$ Risch
-                        Differential Equation
-                        \item Primitive (Logarithmic) Case
-                        $\longrightarrow$ Parametric Risch Differential
-                        Equation
-                        \item Tangent Case $\longrightarrow$ Coupled
-                        Risch Differential Equation
-                    \end{itemize}
-            \end{itemize}
-    \pause
-    \item Steps 3 and 4 potentially prove that the integral is nonelementary
-    \end{itemize}
-\end{frame}
-
-\subsubsection{Example: Risch Differential Equation}
-
-\begin{frame}
-    \frametitle{Example: Risch Differential Equation}
-    \pause
-    \begin{equation}
-    \label{exponential integral}
-    \int{p(x)e^{q(x)}\,dx}
-    \end{equation}
-    is equivalent to 
-    \begin{equation}
-    \label{rischde}
-    y' + fy = g
-    \end{equation}
-    having a solution $y$, where $f$ and $g$ come directly from $p(x)$
-    and $q(x)$
-    \pause
-    \begin{itemize}
-        \item Liouville's Theorem implies $y$ must have only ``parts''
-        from $f$ and $g$.
-        \pause
-        \item Complex, case-by-case algorithm to solve \ref{rischde}
-        \pause
-        \item If it finds that no solution can not exist, then it has shown
-        that \ref{exponential integral} is not elementary.
-    \end{itemize}
-\end{frame}
-
-\section{Implementation in SymPy}
+%% \section{Background}
+%% \subsection{Definitions}
+%% 
+%% \begin{frame}
+%%     \frametitle{Definitions}
+%%     \begin{itemize}
+%%         \item {\bf Integration} 
+%%         \begin{itemize}
+%%             \item One of two fundamental operations in calculus (the other
+%%             being differentiation).
+%%             \item Informally, $\int_a^b{f(x)\,dx}$ represents the area under
+%%             the curve defined by the function $f(x)$ from the points $x=a$
+%%             to $x=b$.
+%%             \item The Fundamental Theorem of Calculus states that
+%%             integration and antidifferentiation, the inverse operation of
+%%             differentiation, are essentially the same thing.
+%%             \end{itemize}
+%%     \pause
+%%         \item {\bf Algebraic}
+%%         \begin{itemize}
+%%             \item A function is algebraic if it is the root of a polynomial
+%%             with coefficients that are rational functions with rational
+%%             number coefficients.  
+%%             \item For example, the function $\sqrt{x + 1}$ is algebraic
+%%             because it is the root of the polynomial $y^2 = x + 1$. 
+%%         \end{itemize}
+%%     \end{itemize}
+%% \end{frame}
+%% 
+%% \begin{frame}
+%%     \frametitle{Definitions}
+%%     \begin{itemize}
+%%         \item {\bf Transcendental}
+%%         \begin{itemize}
+%%             \item A function is transcendental if it is not algebraic.  
+%%             \item A function is \textit{purely transcendental} if it does
+%%             not contain any algebraic components.  
+%%             \item $e^x$, $\ln{x}$, $\sin{x}$, $\cos{x}$, and $\tan{x}$ are
+%%             all transcendental.  
+%%             \item Roughly speaking, a function is transcendental if it
+%%             contains one of these, and it is purely transcendental if it
+%%             does not contain any radicals.
+%%             \begin{itemize}
+%%                 \item $e^{x + 1}$ is purely transcendental
+%%                 \item $\sqrt[3]{\ln{x}}$ is transcendental but not
+%%                 purely transcendental
+%%                 \item $\sqrt{x}$ is neither transcendental nor purely
+%%                 transcendental (it is algebraic)
+%%             \end{itemize}
+%%         \end{itemize}
+%%     \end{itemize}
+%% \end{frame}
+%% 
+%% \begin{frame}
+%%     \frametitle{Definitions}
+%%     \begin{itemize}
+%%         \item {\bf Elementary}
+%%         \begin{itemize}
+%%             \item Roughly speaking, a function is elementary if it can
+%%             be represented as a combination of exponentials, logarithms,
+%%             powers, and trigonometric functions by addition,
+%%             subtraction, multiplication, division, and composition. 
+%%             \item For example, $\frac{\sin{(x^2 +
+%%             1)}}{\sqrt[3]{\ln{x}}}$ is elementary, but
+%%             $\frac{2}{\sqrt{\pi}}\int{e^{-x^2}\,dx}$, the error
+%%             function, is not.
+%%         \end{itemize}
+%%     \end{itemize}
+%% \end{frame}
+%% 
+%% \section{The Risch Algorithm}
+%% 
+%% \subsection{Liouville's Theorem}
+%% 
+%% \begin{frame}
+%%     \frametitle{Liouville's Theorem}
+%%     \begin{itemize}
+%%         \item If a function $f$ has an elementary integral, then the
+%%         integral can always be written in the form
+%%         \begin{equation}
+%%             \label{liouville's theorem}
+%%             \int{f} = v + \sum_{n=1}^m{c_i\ln{u_i}}
+%%         \end{equation}
+%%         where $v$ and the $u_i$ are ``parts'' of $f$, and the $c_i$ are
+%%         constants.
+%%         \pause
+%%         \item In other words, if we can show that $\int{f}$ does not
+%%         have this form, then we have shown that it is not elementary.
+%%     \end{itemize}
+%% \end{frame}
+%% 
+%% \subsection{The Transcendental Risch Algorithm}
+%% 
+%% \begin{frame}
+%%     \frametitle{The Transcendental Risch Algorithm}
+%%     \begin{itemize}
+%%         \item First we must parse the expression
+%%         \item Make sure it is purely transcendental
+%%         \begin{itemize}
+%%             \item e.g., $e^{\frac{1}{2}\ln{x}}$ is NOT transcendental
+%%             because it is equivalent to $\sqrt{x}$
+%%         \end{itemize}
+%%     \pause
+%%     \item Break the function into transcendental ``levels''
+%%     \item For example, for $e^{\tan{x^2}}$, we have $e^{\tan{x^2}}$,
+%%     then $\tan{x^2}$, then $x$.
+%%     \pause
+%%     \item Integrate starting at the top until out integral only has
+%%     lower levels
+%%     \item Then recursively integrate
+%%     \item When we reach $x$ (always the lowest ``level''), we are done
+%%     \end{itemize}
+%% \end{frame}
+%% 
+%% \begin{frame}
+%%     \frametitle{The Transcendental Risch Algorithm}
+%%     \begin{itemize}
+%%         \item Four steps, each which breaks up the integral into a
+%%         smaller integral and part of the solution
+%%         \begin{equation}
+%%         \label{smaller integral}
+%%         \int{f(x)\,dx} = p(x) + \int{q(x)\,dx}
+%%         \end{equation}
+%%         \pause
+%%         \item The steps are 
+%%             \begin{enumerate}
+%%                 \item Hermite Reduction
+%%                 \item Polynomial Reduction
+%%                 \item Residue Criterion: Computes the logarithmic part
+%%                 (the $c_i$ and $u_i$)
+%%                 \item We then get a ``polynomial'' in our top level
+%%                 function
+%%             \end{enumerate}
+%%             \pause
+%%             \begin{itemize}
+%%                 \item Each case reduces to a subproblem
+%%                     \begin{itemize}
+%%                         \item Exponential Case $\longrightarrow$ Risch
+%%                         Differential Equation
+%%                         \item Primitive (Logarithmic) Case
+%%                         $\longrightarrow$ Parametric Risch Differential
+%%                         Equation
+%%                         \item Tangent Case $\longrightarrow$ Coupled
+%%                         Risch Differential Equation
+%%                     \end{itemize}
+%%             \end{itemize}
+%%     \pause
+%%     \item Steps 3 and 4 potentially prove that the integral is nonelementary
+%%     \end{itemize}
+%% \end{frame}
+%% 
+%% \subsubsection{Example: Risch Differential Equation}
+%% 
+%% \begin{frame}
+%%     \frametitle{Example: Risch Differential Equation}
+%%     \pause
+%%     \begin{equation}
+%%     \label{exponential integral}
+%%     \int{p(x)e^{q(x)}\,dx}
+%%     \end{equation}
+%%     is equivalent to 
+%%     \begin{equation}
+%%     \label{rischde}
+%%     y' + fy = g
+%%     \end{equation}
+%%     having a solution $y$, where $f$ and $g$ come directly from $p(x)$
+%%     and $q(x)$
+%%     \pause
+%%     \begin{itemize}
+%%         \item Liouville's Theorem implies $y$ must have only ``parts''
+%%         from $f$ and $g$.
+%%         \pause
+%%         \item Complex, case-by-case algorithm to solve \ref{rischde}
+%%         \pause
+%%         \item If it finds that no solution can not exist, then it has shown
+%%         that \ref{exponential integral} is not elementary.
+%%     \end{itemize}
+%% \end{frame}
+%% 
+%% \section{Implementation in SymPy}
 
 \begin{frame}
-    \frametitle{Implementation in SymPy}
+%    \frametitle{Implementation in SymPy}
     \begin{figure}
     \subfigure{\includegraphics[width=.32\textwidth]{python-logo-master-v3-TM.png}}
     \subfigure{\includegraphics[width=.32\textwidth]{sympy.png}}
@@ -251,17 +239,17 @@ Integration and Implementation in the SymPy Computer Algebra System}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Implementation in SymPy}
+%    \frametitle{Implementation in SymPy}
     \begin{itemize}
         \item End result: \rischintegrate{} function
-        \pause
         \item Orders of magnitude faster than old \texttt{integrate()} function
         \item Able to solve much more
         \item And it can prove that integrals are nonelementary!
     \end{itemize}
 \end{frame}
+
 \begin{frame}
-    \frametitle{Implementation in SymPy}
+%    \frametitle{Implementation in SymPy}
     \begin{figure}[t!]
         \subfigure{\raisebox{1in}{\includegraphics[width=.481\textwidth]{algorithmfull}}}
         \subfigure{\includegraphics[width=.5\textwidth]{polyrischdenocancel2full.pdf}}
@@ -273,12 +261,11 @@ Integration and Implementation in the SymPy Computer Algebra System}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Implementation in SymPy}
+%    \frametitle{Implementation in SymPy}
     \begin{figure}
     \begin{flushleft}
     \subfigure{\includegraphics[width=.7\textwidth]{../report/sample1.pdf}}
     \subfigure{\includegraphics[width=.7\textwidth]{../report/sample2.pdf}}
-    \pause
     \subfigure{\includegraphics[width=.7\textwidth]{../report/sample3.pdf}}
     \subfigure{\includegraphics[width=.7\textwidth]{../report/sample4.pdf}}
     \end{flushleft}
@@ -286,7 +273,7 @@ Integration and Implementation in the SymPy Computer Algebra System}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Implementation in SymPy}
+%    \frametitle{Implementation in SymPy}
     \begin{figure}
     \begin{flushleft}
     \subfigure{\includegraphics[width=.7\textwidth]{../report/sample5.pdf}}
@@ -298,7 +285,7 @@ Integration and Implementation in the SymPy Computer Algebra System}
 \end{frame}
 
 \begin{frame}
-    \frametitle{Implementation in SymPy}
+%    \frametitle{Implementation in SymPy}
     Let's look at how long it takes to compute $\int{x^{10}e^x\,dx}$ and $\int{x^{20}e^x\,dx}$.
     \begin{figure}
     \begin{flushleft}
@@ -309,16 +296,21 @@ Integration and Implementation in the SymPy Computer Algebra System}
     \end{flushleft}
     \end{figure}
     (\texttt{integrate()} is the old function and \rischintegrate{} is
-    the new function)\\
-    \pause
+    the new function)
+\end{frame}
+
+\begin{frame}
+    \frametitle{Time of \texttt{integrate()} and \rischintegrate{} to evaluate $\int x^ne^x\,dx$}
+    \begin{figure}
+    \includegraphics[width=.6\textwidth]{risch_plot.pdf}
+    \end{figure}
     {\bf The new implementation is both orders of magnitude faster, and
     asymptotically faster!}
 \end{frame}
 
 \begin{frame}
     \begin{itemize}
-        \item All of SymPy (including my work) is open source (BSD license)
-        \item You can download SymPy at \url{www.sympy.org}
+        \item You can download SymPy at \url{www.sympy.org}.
         \item My development branch is at
         \url{www.github.com/asmeurer/sympy/tree/integration3} (it
         isn't merged into the main repo yet)
@@ -328,7 +320,7 @@ Integration and Implementation in the SymPy Computer Algebra System}
 \section{Questions}
 
 \begin{frame}
-    \frametitle{Questions?}
+%    \frametitle{Questions?}
     \huge{Questions?}
 \end{frame}
 
