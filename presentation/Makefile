@@ -1,8 +1,11 @@
-all: extras latex
+# make algorithm is broken, so don't do it by default
+all: python plot latex open
 
 latex:
 	pdflatex presentation.tex
 	pdflatex presentation.tex
+
+open:
 	open -a Skim presentation.pdf
 
 nonstopmode: extrasnonstopmode
@@ -17,11 +20,16 @@ fast:
 clean:
 	-rm -f *.blg *.lof *.log *.lot *.pdf *.toc *.bbl *.aux *glg *.glo *.gls *.ist *.acn *.acr *.alg
 
-extras:
+algorithm:
 	pdflatex algorithmfull.tex
 	pdflatex algorithmfull.tex
+
+python:
 	pdflatex polyrischdenocancel2full.tex
 	pdflatex polyrischdenocancel2full.tex
+
+plot:
+	python risch-times.py
 
 extrasnonstopmode:
 	pdflatex -interaction=nonstopmode algorithmfull.tex
